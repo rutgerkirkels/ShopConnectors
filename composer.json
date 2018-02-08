@@ -1,0 +1,30 @@
+{
+  "name": "rutgerkirkels/shopconnectors",
+  "type": "library",
+  "description": "Library to connect to various webshops",
+  "license": "MIT",
+  "keywords": ["webshop","api", "prestashop"],
+  "authors": [
+    {
+      "name": "Rutger Kirkels",
+      "email": "rutger@kirkels.nl",
+      "homepage": "https://rutger.kirkels.nl"
+    }
+  ],
+  "support": {
+    "wiki": "https://github.com/rutgerkirkels/DomoticzPHP/wiki",
+    "issues": "https://github.com/rutgerkirkels/DomoticzPHP/issues"
+  },
+  "require": {
+    "php": "^7.2",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "rutgerkirkels\\ShopConnectors\\": "src"
+    }
+  }
+}
