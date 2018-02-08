@@ -16,7 +16,7 @@
     "issues": "https://github.com/rutgerkirkels/DomoticzPHP/issues"
   },
   "require": {
-    "php": "^7.2",
+    "php": "^7.1",
     "guzzlehttp/guzzle": "^6.3"
   },
   "require-dev": {
