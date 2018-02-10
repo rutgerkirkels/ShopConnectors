@@ -3,6 +3,7 @@
 namespace rutgerkirkels\ShopConnectors\Connectors;
 use GuzzleHttp\Client;
 use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
+use rutgerkirkels\ShopConnectors\Models\AbstractAddress;
 use rutgerkirkels\ShopConnectors\Models\Customer;
 use rutgerkirkels\ShopConnectors\Models\DateRange;
 use rutgerkirkels\ShopConnectors\Models\DeliveryAddress;
@@ -23,6 +24,11 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
      */
     protected $webservice;
 
+    /**
+     * @var array
+     */
+    protected $countryIsoCodes;
+
     public function __construct(string $host = null, CredentialsInterface $credentials = null)
     {
         parent::__construct($host, $credentials);
@@ -32,8 +38,14 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         ]);
     }
 
+    /**
+     * @param DateRange $dateRange
+     * @return array
+     */
     public function getOrders(DateRange $dateRange = null)
     {
+        $this->getCountryIsoCodes();
+
         $query = [
             'display' => 'full',
             'date' => '1',
@@ -63,6 +75,10 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         return $orders;
     }
 
+    /**
+     * @param int $customerId
+     * @return Customer
+     */
     protected function getCustomer(int $customerId)
     {
         $query = [
@@ -83,6 +99,11 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         return $customer;
     }
 
+    /**
+     * @param int $addressId
+     * @param string $type
+     * @return AbstractAddress
+     */
     protected function getAddress(int $addressId, string $type)
     {
         $query = [
@@ -99,7 +120,15 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         $address->setAddress($psAddress->address1);
         $address->setPostalCode($psAddress->postcode);
         $address->setCity($psAddress->city);
+        $address->setCountryIso2($this->countryIsoCodes[$psAddress->id_country]);
 
+        if ($psAddress->phone != '') {
+            $address->addPhone($psAddress->phone);
+        }
+
+        if ($psAddress->phone_mobile != '') {
+            $address->addPhone($psAddress->phone_mobile, 'mobile');
+        }
         return $address;
     }
 
@@ -115,5 +144,21 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
 
         return $resource;
 
+    }
+
+    protected function getCountryIsoCodes() {
+        $query = [
+            'display' => 'full',
+            'output_format' => 'JSON'
+        ];
+
+        $response = $this->webservice->request('GET', 'countries', [
+            'query' => $query
+        ]);
+
+        $psCountries = (json_decode((string) $response->getBody()));
+        foreach ($psCountries->countries as $psCountry) {
+            $this->countryIsoCodes[$psCountry->id] = $psCountry->iso_code;
+        }
     }
 }

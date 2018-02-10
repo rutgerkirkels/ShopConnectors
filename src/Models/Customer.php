@@ -131,5 +131,4 @@ class Customer
         $this->dob = $dob;
     }
 
-
 }

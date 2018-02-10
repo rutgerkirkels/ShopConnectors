@@ -1,0 +1,62 @@
+<?php
+
+namespace rutgerkirkels\ShopConnectors\Models;
+
+
+class Phone
+{
+    /**
+     * @var string
+     */
+    protected $number;
+
+    /**
+     * @var string
+     */
+    protected $type;
+
+    /**
+     * Phone constructor.
+     * @param string $number
+     * @param string $type
+     */
+    public function __construct(string $number, string $type = 'landline')
+    {
+        $this->setNumber($number);
+        $this->setType($type);
+    }
+
+    /**
+     * @return string
+     */
+    public function getNumber(): string
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param string $number
+     */
+    public function setNumber(string $number): void
+    {
+        $this->number = $number;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType(string $type): void
+    {
+        $this->type = $type;
+    }
+
+
+}
