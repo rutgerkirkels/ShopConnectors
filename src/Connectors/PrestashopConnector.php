@@ -5,6 +5,8 @@ use GuzzleHttp\Client;
 use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
 use rutgerkirkels\ShopConnectors\Models\Customer;
 use rutgerkirkels\ShopConnectors\Models\DateRange;
+use rutgerkirkels\ShopConnectors\Models\DeliveryAddress;
+use rutgerkirkels\ShopConnectors\Models\InvoiceAddress;
 use rutgerkirkels\ShopConnectors\Models\Order;
 
 /**
@@ -53,7 +55,8 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
             $order = new Order();
             $order->setDate(new \DateTime($psOrder->date_add));
             $order->setCustomer($this->getCustomer($psOrder->id_customer));
-
+            $order->setInvoiceAddress($this->getAddress($psOrder->id_address_invoice, InvoiceAddress::class));
+            $order->setDeliveryAddress($this->getAddress($psOrder->id_address_delivery, DeliveryAddress::class));
             $orders[] = $order;
         }
 
@@ -79,6 +82,27 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
 
         return $customer;
     }
+
+    protected function getAddress(int $addressId, string $type)
+    {
+        $query = [
+            'output_format' => 'JSON'
+        ];
+
+        $response = $this->webservice->request('GET', 'addresses/' . strval($addressId), [
+            'query' => $query
+        ]);
+
+        $psAddress = (json_decode((string) $response->getBody()))->address;
+
+        $address = new $type;
+        $address->setAddress($psAddress->address1);
+        $address->setPostalCode($psAddress->postcode);
+        $address->setCity($psAddress->city);
+
+        return $address;
+    }
+
     protected function getOrderDetails(int $orderId) {
         $opts = [
             'resource' => 'order_details',

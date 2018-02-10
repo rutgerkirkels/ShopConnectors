@@ -16,6 +16,16 @@ class Order
     protected $customer;
 
     /**
+     * @var DeliveryAddress
+     */
+    protected $deliveryAddress;
+
+    /**
+     * @var InvoiceAddress
+     */
+    protected $invoiceAddress;
+
+    /**
      * @return \DateTime
      */
     public function getDate(): \DateTime
@@ -45,6 +55,38 @@ class Order
     public function setCustomer(Customer $customer): void
     {
         $this->customer = $customer;
+    }
+
+    /**
+     * @return DeliveryAddress
+     */
+    public function getDeliveryAddress(): DeliveryAddress
+    {
+        return $this->deliveryAddress;
+    }
+
+    /**
+     * @param DeliveryAddress $deliveryAddress
+     */
+    public function setDeliveryAddress(DeliveryAddress $deliveryAddress): void
+    {
+        $this->deliveryAddress = $deliveryAddress;
+    }
+
+    /**
+     * @return InvoiceAddress
+     */
+    public function getInvoiceAddress(): InvoiceAddress
+    {
+        return $this->invoiceAddress;
+    }
+
+    /**
+     * @param InvoiceAddress $invoiceAddress
+     */
+    public function setInvoiceAddress(InvoiceAddress $invoiceAddress): void
+    {
+        $this->invoiceAddress = $invoiceAddress;
     }
 
 
