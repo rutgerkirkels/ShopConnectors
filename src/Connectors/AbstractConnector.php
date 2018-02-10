@@ -1,6 +1,7 @@
 <?php
 
 namespace rutgerkirkels\ShopConnectors\Connectors;
+use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
 
 /**
  * Class AbstractConnector
@@ -15,9 +16,15 @@ class AbstractConnector
      */
     protected $host;
 
-    public function __construct()
-    {
+    /**
+     * @var CredentialsInterface
+     */
+    protected $credentials;
 
+    public function __construct(string $host = null, CredentialsInterface $credentials = null)
+    {
+        $this->host = $host;
+        $this->credentials = $credentials;
     }
 
     /**
@@ -35,6 +42,23 @@ class AbstractConnector
     {
         $this->host = $host;
     }
+
+    /**
+     * @return CredentialsInterface
+     */
+    public function getCredentials(): CredentialsInterface
+    {
+        return $this->credentials;
+    }
+
+    /**
+     * @param CredentialsInterface $credentials
+     */
+    public function setCredentials(CredentialsInterface $credentials): void
+    {
+        $this->credentials = $credentials;
+    }
+
 
 
 }

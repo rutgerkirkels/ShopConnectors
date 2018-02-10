@@ -18,27 +18,24 @@ class ConnectorFactory
      */
     protected $connectorClass;
 
+    protected $host;
+
+    protected $credentials;
     /**
      * @param string $shopType
      * @param CredentialsInterface $credentials
      * @return AbstractConnector
      */
-    public function build(string $shopType, CredentialsInterface $credentials) {
+    public function build(string $shopType, string $host, CredentialsInterface $credentials) {
         try {
             $class = __NAMESPACE__ . '\\' . $shopType . 'Connector';
-            $this->connectorClass = new $class;
+            $this->connectorClass = new $class($host, $credentials);
         }
         catch (\Exception $exception) {
             error_log($exception->getMessage(), E_ERROR);
         }
-        $this->loadCredentials($credentials);
         return $this->connectorClass;
     }
 
-    protected function loadCredentials(CredentialsInterface $credentials)
-    {
-        $this->connectorClass->setHost($credentials->getHost());
-        $this->connectorClass->setKey($credentials->getKey());
-    }
 
 }

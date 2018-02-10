@@ -9,14 +9,8 @@ class PrestashopCredentials implements CredentialsInterface
      */
     protected $key;
 
-    /**
-     * @var string
-     */
-    protected $host;
-
-    public function __construct(string $host = null, string $key = null)
+    public function __construct(string $key = null)
     {
-        $this->host = $host;
         $this->key = $key;
     }
 
@@ -35,23 +29,6 @@ class PrestashopCredentials implements CredentialsInterface
     public function setKey($key)
     {
         $this->key = $key;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHost(): string
-    {
-        return $this->host;
-    }
-
-    /**
-     * @param string $host
-     */
-    public function setHost(string $host)
-    {
-        $this->host = $host;
         return $this;
     }
 

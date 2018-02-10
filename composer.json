@@ -17,11 +17,11 @@
   },
   "require": {
     "php": "^7.1",
-    "guzzlehttp/guzzle": "^6.3",
-    "prestashop/prestashop-webservice-lib": "dev-master"
+    "guzzlehttp/guzzle": "^6.3"
   },
   "require-dev": {
-    "phpunit/phpunit": "4.0.*"
+    "phpunit/phpunit": "4.0.*",
+    "prestashop/prestashop-webservice-lib": "@dev"
   },
   "autoload": {
     "psr-4": {
