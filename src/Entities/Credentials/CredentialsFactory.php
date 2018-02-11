@@ -12,14 +12,14 @@ class CredentialsFactory
 {
     public static function build($shopType)
     {
-        try {
             $class = __NAMESPACE__ . '\\' . $shopType . 'Credentials';
-            $credentialsClass = new $class;
-        }
-        catch (\Exception $exception) {
-            error_log($exception->getMessage(), E_ERROR);
-        }
+            if (class_exists($class)) {
+                $credentialsClass = new $class;
+                return $credentialsClass;
+            }
+            else {
+                throw new \Exception($shopType . ' is an invalid shopType');
+            }
 
-        return $credentialsClass;
     }
 }

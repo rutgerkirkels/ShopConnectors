@@ -21,20 +21,25 @@ class ConnectorFactory
     protected $host;
 
     protected $credentials;
+
     /**
      * @param string $shopType
+     * @param string $host
      * @param CredentialsInterface $credentials
      * @return AbstractConnector
+     * @throws \Exception
      */
-    public function build(string $shopType, string $host, CredentialsInterface $credentials) {
-        try {
-            $class = __NAMESPACE__ . '\\' . $shopType . 'Connector';
+    public function build(string $shopType, string $host, CredentialsInterface $credentials)
+    {
+        $class = __NAMESPACE__ . '\\' . $shopType . 'Connector';
+        if (class_exists($class)) {
             $this->connectorClass = new $class($host, $credentials);
+
+            return $this->connectorClass;
         }
-        catch (\Exception $exception) {
-            error_log($exception->getMessage(), E_ERROR);
+        else {
+            throw new \Exception($shopType . ' is an invalid shopType');
         }
-        return $this->connectorClass;
     }
 
 
