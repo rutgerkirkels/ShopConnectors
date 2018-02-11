@@ -77,6 +77,7 @@ class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
 
             $order = new Order();
             $order->setDate($this->getTimestamp($magentoOrder->created_at));
+            $order->setLastUpdate($this->getTimestamp($magentoOrder->updated_at));
             $order->setCustomer($this->getMagentoCustomer($magentoOrder));
             $order->setInvoiceAddress($this->getAddress($magentoOrder->billing_address, InvoiceAddress::class));
             $order->setDeliveryAddress($this->getAddress($magentoOrder->shipping_address, DeliveryAddress::class));
