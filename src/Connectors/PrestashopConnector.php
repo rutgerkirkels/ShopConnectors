@@ -8,7 +8,9 @@ use rutgerkirkels\ShopConnectors\Models\Customer;
 use rutgerkirkels\ShopConnectors\Models\DateRange;
 use rutgerkirkels\ShopConnectors\Models\DeliveryAddress;
 use rutgerkirkels\ShopConnectors\Models\InvoiceAddress;
+use rutgerkirkels\ShopConnectors\Models\Item;
 use rutgerkirkels\ShopConnectors\Models\Order;
+use rutgerkirkels\ShopConnectors\Models\OrderLine;
 
 /**
  * Class PrestashopConnector
@@ -69,6 +71,7 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
             $order->setCustomer($this->getCustomer($psOrder->id_customer));
             $order->setInvoiceAddress($this->getAddress($psOrder->id_address_invoice, InvoiceAddress::class));
             $order->setDeliveryAddress($this->getAddress($psOrder->id_address_delivery, DeliveryAddress::class));
+            $order->setOrderLines($this->getOrderLines($psOrder->id));
             $orders[] = $order;
         }
 
@@ -132,18 +135,36 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         return $address;
     }
 
-    protected function getOrderDetails(int $orderId) {
-        $opts = [
+    protected function getOrderLines(int $orderId) {
+        $query = [
             'resource' => 'order_details',
-            'id' => $orderId
+            'filter[id_order]' => '[' . $orderId . ']',
+            'display' => 'full',
+            'output_format' => 'JSON'
         ];
 
-        $xml = $this->webservice->get($opts);
+        $response = $this->webservice->request('GET', 'order_details', [
+            'query' => $query
+        ]);
 
-        $resource = $xml->children()->children();
+        $psOrderDetails = (json_decode((string) $response->getBody()));
+        $orderLine = [];
+        foreach ($psOrderDetails->order_details as $psOrderDetail) {
+            $item = new Item();
+            $item->setName($psOrderDetail->product_name);
+            $item->setSku($psOrderDetail->product_reference);
+            if ($psOrderDetail->product_ean13 !== '') {
+                $item->setEan13(intval($psOrderDetail->product_ean13));
+            }
+            if ($psOrderDetail->product_upc !== '') {
+                $item->setUpc(intval($psOrderDetail->product_upc));
+            }
+            $item->setWeight(floatval($psOrderDetail->product_weight));
+            $item->setPriceWithoutTax(floatval($psOrderDetail->unit_price_tax_excl));
+            $orderLines[] = new OrderLine($item, (float) $psOrderDetail->product_quantity);
+        }
 
-        return $resource;
-
+        return $orderLines;
     }
 
     protected function getCountryIsoCodes() {

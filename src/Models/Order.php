@@ -26,6 +26,11 @@ class Order
     protected $invoiceAddress;
 
     /**
+     * @var array
+     */
+    protected $orderLines;
+
+    /**
      * @return \DateTime
      */
     public function getDate(): \DateTime
@@ -87,6 +92,22 @@ class Order
     public function setInvoiceAddress(InvoiceAddress $invoiceAddress): void
     {
         $this->invoiceAddress = $invoiceAddress;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOrderLines(): array
+    {
+        return $this->orderLines;
+    }
+
+    /**
+     * @param array $orderRows
+     */
+    public function setOrderLines(array $orderLines): void
+    {
+        $this->orderLines = $orderLines;
     }
 
 
