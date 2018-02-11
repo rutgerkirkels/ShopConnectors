@@ -2,7 +2,12 @@
 
 namespace rutgerkirkels\ShopConnectors\Entities\Credentials;
 
-
+/**
+ * Class MagentoV1Credentials
+ * @package rutgerkirkels\ShopConnectors\Entities\Credentials
+ *
+ * @author Rutger Kirkels <rutger@kirkels.nl>
+ */
 class MagentoV1Credentials implements CredentialsInterface
 {
     /**

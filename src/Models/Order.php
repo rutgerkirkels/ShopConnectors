@@ -2,9 +2,14 @@
 
 namespace rutgerkirkels\ShopConnectors\Models;
 
-
 use rutgerkirkels\ShopConnectors\Helpers\DateTime;
 
+/**
+ * Class Order
+ * @package rutgerkirkels\ShopConnectors\Models
+ *
+ * @author Rutger Kirkels <rutger@kirkels.nl>
+ */
 class Order extends AbstractModel
 {
     /**

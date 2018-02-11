@@ -2,7 +2,12 @@
 
 namespace rutgerkirkels\ShopConnectors\Models;
 
-
+/**
+ * Class Phone
+ * @package rutgerkirkels\ShopConnectors\Models
+ *
+ * @author Rutger Kirkels <rutger@kirkels.nl>
+ */
 class Phone extends AbstractModel
 {
     /**

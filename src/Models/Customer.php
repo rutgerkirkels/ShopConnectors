@@ -2,7 +2,12 @@
 
 namespace rutgerkirkels\ShopConnectors\Models;
 
-
+/**
+ * Class Customer
+ * @package rutgerkirkels\ShopConnectors\Models
+ *
+ * @author Rutger Kirkels <rutger@kirkels.nl>
+ */
 class Customer extends AbstractModel
 {
     /**

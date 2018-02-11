@@ -2,6 +2,12 @@
 
 namespace rutgerkirkels\ShopConnectors\Entities\Credentials;
 
+/**
+ * Class PrestashopCredentials
+ * @package rutgerkirkels\ShopConnectors\Entities\Credentials
+ *
+ * @author Rutger Kirkels <rutger@kirkels.nl>
+ */
 class PrestashopCredentials implements CredentialsInterface
 {
     /**

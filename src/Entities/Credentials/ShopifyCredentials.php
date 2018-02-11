@@ -2,7 +2,12 @@
 
 namespace rutgerkirkels\ShopConnectors\Entities\Credentials;
 
-
+/**
+ * Class ShopifyCredentials
+ * @package rutgerkirkels\ShopConnectors\Entities\Credentials
+ *
+ * @author Rutger Kirkels <rutger@kirkels.nl>
+ */
 class ShopifyCredentials implements CredentialsInterface
 {
     /**

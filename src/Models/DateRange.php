@@ -1,9 +1,13 @@
 <?php
 
-
 namespace rutgerkirkels\ShopConnectors\Models;
 
-
+/**
+ * Class DateRange
+ * @package rutgerkirkels\ShopConnectors\Models
+ *
+ * @author Rutger Kirkels <rutgr@kirkels.nl>
+ */
 class DateRange
 {
     /**
@@ -16,6 +20,11 @@ class DateRange
      */
     protected $end;
 
+    /**
+     * DateRange constructor.
+     * @param \DateTime|null $start
+     * @param \DateTime|null $end
+     */
     public function __construct(\DateTime $start = null, \DateTime $end = null)
     {
         if (is_null($start)) {
@@ -62,7 +71,6 @@ class DateRange
      */
     public function setEnd(\DateTime $end): void
     {
-
         $this->end = $end;
     }
 }

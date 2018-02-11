@@ -18,10 +18,6 @@ class ConnectorFactory
      */
     protected $connectorClass;
 
-    protected $host;
-
-    protected $credentials;
-
     /**
      * @param string $shopType
      * @param string $host
@@ -41,6 +37,4 @@ class ConnectorFactory
             throw new \Exception($shopType . ' is an invalid shopType');
         }
     }
-
-
 }

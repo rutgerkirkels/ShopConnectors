@@ -2,7 +2,12 @@
 
 namespace rutgerkirkels\ShopConnectors\Entities\Credentials;
 
-
+/**
+ * Class WoocommerceCredentials
+ * @package rutgerkirkels\ShopConnectors\Entities\Credentials
+ *
+ * @author Rutger Kirkels <rutger@kirkels.nl>
+ */
 class WoocommerceCredentials implements CredentialsInterface
 {
     /**

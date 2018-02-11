@@ -2,7 +2,12 @@
 
 namespace rutgerkirkels\ShopConnectors\Models;
 
-
+/**
+ * Class AbstractAddress
+ * @package rutgerkirkels\ShopConnectors\Models
+ *
+ * @author Rutger Kirkels <rutger@kirkels.nl>
+ */
 class AbstractAddress extends AbstractModel
 {
     /**
