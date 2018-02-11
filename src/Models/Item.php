@@ -16,6 +16,11 @@ class Item
     protected $priceWithoutTax;
 
     /**
+     * @var float
+     */
+    protected $priceWithTax;
+
+    /**
      * @var string
      */
     protected $sku;
@@ -59,6 +64,22 @@ class Item
     public function getPriceWithoutTax(): float
     {
         return $this->priceWithoutTax;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPriceWithTax(): float
+    {
+        return $this->priceWithTax;
+    }
+
+    /**
+     * @param float $priceWithTax
+     */
+    public function setPriceWithTax(float $priceWithTax): void
+    {
+        $this->priceWithTax = $priceWithTax;
     }
 
     /**

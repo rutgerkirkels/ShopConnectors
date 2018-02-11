@@ -31,6 +31,11 @@ class Customer
     protected $email;
 
     /**
+     * @var array
+     */
+    protected $phoneNumbers;
+
+    /**
      * @var \DateTime
      */
     protected $dob;
@@ -114,6 +119,23 @@ class Customer
     {
         $this->email = $email;
     }
+
+    /**
+     * @return array
+     */
+    public function getPhoneNumbers(): array
+    {
+        return $this->phoneNumbers;
+    }
+
+    /**
+     * @param Phone $phone
+     */
+    public function addPhoneNumber(Phone $phone): void
+    {
+        $this->phoneNumbers[] = $phone;
+    }
+
 
     /**
      * @return \DateTime

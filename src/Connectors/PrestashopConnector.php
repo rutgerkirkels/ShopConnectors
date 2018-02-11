@@ -22,7 +22,7 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
 {
 
     /**
-     * @var \PrestaShopWebservice
+     * @var Client
      */
     protected $webservice;
 
