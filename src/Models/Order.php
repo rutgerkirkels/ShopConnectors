@@ -3,6 +3,7 @@
 namespace rutgerkirkels\ShopConnectors\Models;
 
 use rutgerkirkels\ShopConnectors\Helpers\DateTime;
+use rutgerkirkels\ShopConnectors\Models\Order\ExternalData;
 
 /**
  * Class Order
@@ -41,6 +42,11 @@ class Order extends AbstractModel
      * @var array
      */
     protected $orderLines;
+
+    /**
+     * @var ExternalData
+     */
+    protected $externalData;
 
     /**
      * @return \DateTime
@@ -131,15 +137,30 @@ class Order extends AbstractModel
     }
 
     /**
-     * @param array $orderRows
+     * @param array $orderLines
      */
     public function setOrderLines(array $orderLines): void
     {
         $this->orderLines = $orderLines;
     }
 
+    /**
+     * @return ExternalData
+     */
+    public function getExternalData(): ExternalData
+    {
+        return $this->externalData;
+    }
+
+    /**
+     * @param ExternalData $externalData
+     */
+    public function setExternalData(ExternalData $externalData): void
+    {
+        $this->externalData = $externalData;
+    }
+
     public function getChecksum() {
-        echo json_encode($this);
-        die;
+        // TODO: generate checksum
     }
 }

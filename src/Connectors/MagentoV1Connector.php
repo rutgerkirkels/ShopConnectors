@@ -82,6 +82,7 @@ class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
             $order->setInvoiceAddress($this->getAddress($magentoOrder->billing_address, InvoiceAddress::class));
             $order->setDeliveryAddress($this->getAddress($magentoOrder->shipping_address, DeliveryAddress::class));
             $order->setOrderLines($this->getOrderLines($magentoOrder->items));
+            $order->setExternalData(($this->getExternalData($magentoOrder)));
 
             $orders[] = $order;
         }
@@ -151,5 +152,15 @@ class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
         }
 
         return $this->sessionId;
+    }
+
+    protected function getExternalData(\stdClass $magentoOrder)
+    {
+        $externalData = new Order\ExternalData();
+        $externalData->setOrderId(intval($magentoOrder->order_id));
+        $externalData->setOrderCode($magentoOrder->increment_id             );
+        $externalData->setOrderIp($magentoOrder->remote_ip);
+
+        return $externalData;
     }
 }

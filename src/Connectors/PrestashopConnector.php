@@ -73,6 +73,7 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
             $order->setInvoiceAddress($this->getAddress($psOrder->id_address_invoice, InvoiceAddress::class));
             $order->setDeliveryAddress($this->getAddress($psOrder->id_address_delivery, DeliveryAddress::class));
             $order->setOrderLines($this->getOrderLines($psOrder->id));
+            $order->setExternalData(($this->getExternalData($psOrder)));
             $orders[] = $order;
         }
 
@@ -189,5 +190,14 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         foreach ($psCountries->countries as $psCountry) {
             $this->countryIsoCodes[$psCountry->id] = $psCountry->iso_code;
         }
+    }
+
+    protected function getExternalData(\stdClass $psOrder)
+    {
+        $externalData = new Order\ExternalData();
+        $externalData->setOrderId($psOrder->id);
+        $externalData->setOrderCode($psOrder->reference);
+
+        return $externalData;
     }
 }

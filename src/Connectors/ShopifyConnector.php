@@ -71,6 +71,7 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
             $order->setInvoiceAddress($this->getAddress($sfOrder->billing_address, InvoiceAddress::class));
             $order->setDeliveryAddress($this->getAddress($sfOrder->shipping_address, DeliveryAddress::class));
             $order->setOrderLines($this->getOrderLines($sfOrder->line_items));
+            $order->setExternalData($this->getExternalData($sfOrder));
             $orders[] = $order;
         }
 
@@ -128,5 +129,15 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
         }
 
         return $orderLines;
+    }
+
+    protected function getExternalData(\stdClass $sfOrder)
+    {
+        $externalData = new Order\ExternalData();
+        $externalData->setOrderId($sfOrder->id);
+        $externalData->setOrderCode(strval($sfOrder->number));
+        $externalData->setOrderIp($sfOrder->client_details->browser_ip);
+
+        return $externalData;
     }
 }
