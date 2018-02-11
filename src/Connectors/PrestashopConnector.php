@@ -152,7 +152,7 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         ]);
 
         $psOrderDetails = (json_decode((string) $response->getBody()));
-        $orderLine = [];
+        $orderLines = [];
         foreach ($psOrderDetails->order_details as $psOrderDetail) {
             $item = new Item();
             $item->setName($psOrderDetail->product_name);
