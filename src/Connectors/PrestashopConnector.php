@@ -135,6 +135,10 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         return $address;
     }
 
+    /**
+     * @param int $orderId
+     * @return array
+     */
     protected function getOrderLines(int $orderId) {
         $query = [
             'resource' => 'order_details',
@@ -167,6 +171,9 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         return $orderLines;
     }
 
+    /**
+     * Get's the country codes and their ID's from Prestahop
+     */
     protected function getCountryIsoCodes() {
         $query = [
             'display' => 'full',
