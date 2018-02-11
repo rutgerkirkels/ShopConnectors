@@ -3,12 +3,19 @@
 namespace rutgerkirkels\ShopConnectors\Models;
 
 
+use rutgerkirkels\ShopConnectors\Helpers\DateTime;
+
 class Order extends AbstractModel
 {
     /**
      * @var \DateTime
      */
     protected $date;
+
+    /**
+     * @var \DateTime
+     */
+    protected $lastUpdate;
 
     /**
      * @var Customer
@@ -44,6 +51,22 @@ class Order extends AbstractModel
     public function setDate(\DateTime $date): void
     {
         $this->date = $date;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getLastUpdate(): \DateTime
+    {
+        return $this->lastUpdate;
+    }
+
+    /**
+     * @param \DateTime $lastUpdate
+     */
+    public function setLastUpdate(\DateTime $lastUpdate): void
+    {
+        $this->lastUpdate = $lastUpdate;
     }
 
     /**
