@@ -192,6 +192,10 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         }
     }
 
+    /**
+     * @param \stdClass $psOrder
+     * @return Order\ExternalData
+     */
     protected function getExternalData(\stdClass $psOrder)
     {
         $externalData = new Order\ExternalData();

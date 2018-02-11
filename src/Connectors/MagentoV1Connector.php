@@ -154,6 +154,10 @@ class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
         return $this->sessionId;
     }
 
+    /**
+     * @param \stdClass $magentoOrder
+     * @return Order\ExternalData
+     */
     protected function getExternalData(\stdClass $magentoOrder)
     {
         $externalData = new Order\ExternalData();

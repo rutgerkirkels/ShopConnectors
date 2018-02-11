@@ -131,6 +131,10 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
         return $orderLines;
     }
 
+    /**
+     * @param \stdClass $sfOrder
+     * @return Order\ExternalData
+     */
     protected function getExternalData(\stdClass $sfOrder)
     {
         $externalData = new Order\ExternalData();
