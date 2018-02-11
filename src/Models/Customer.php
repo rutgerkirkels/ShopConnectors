@@ -93,6 +93,18 @@ class Customer
      */
     public function getFullName(): string
     {
+        if (is_null($this->fullName)) {
+            $fullName = $this->getFirstName();
+
+            if (!is_null($this->getMiddleName())) {
+                $fullName .= ' ' . $this->getMiddleName();
+            }
+
+            $fullName .= ' ' . $this->getLastName();
+
+            return $fullName;
+        }
+
         return $this->fullName;
     }
 
