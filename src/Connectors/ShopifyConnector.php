@@ -2,7 +2,6 @@
 
 namespace rutgerkirkels\ShopConnectors\Connectors;
 
-
 use GuzzleHttp\Client;
 use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
 use rutgerkirkels\ShopConnectors\Models\Customer;
@@ -13,6 +12,11 @@ use rutgerkirkels\ShopConnectors\Models\Item;
 use rutgerkirkels\ShopConnectors\Models\Order;
 use rutgerkirkels\ShopConnectors\Models\OrderLine;
 
+/**
+ * Class ShopifyConnector
+ * @package rutgerkirkels\ShopConnectors\Connectors
+ * @author Rutger Kirkels <rutger@kirkels.nl>
+ */
 class ShopifyConnector extends AbstractConnector implements ConnectorInterface
 {
     /**
@@ -20,6 +24,11 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
      */
     protected $webservice;
 
+    /**
+     * ShopifyConnector constructor.
+     * @param string|null $host
+     * @param CredentialsInterface|null $credentials
+     */
     public function __construct(string $host = null, CredentialsInterface $credentials = null)
     {
         parent::__construct($host, $credentials);
@@ -29,6 +38,10 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
         ]);
     }
 
+    /**
+     * @param DateRange|null $dateRange
+     * @return array
+     */
     public function getOrders(DateRange $dateRange = null)
     {
         $query = [];
@@ -61,6 +74,10 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
         }
     }
 
+    /**
+     * @param \stdClass $customerData
+     * @return Customer
+     */
     protected function getCustomer(\stdClass $customerData)
     {
         $customer = new Customer();
@@ -73,6 +90,11 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
         return $customer;
     }
 
+    /**
+     * @param \stdClass $addressData
+     * @param string $type
+     * @return mixed
+     */
     protected function getAddress(\stdClass $addressData, string $type)
     {
         $address = new $type;
@@ -86,6 +108,10 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
         return $address;
     }
 
+    /**
+     * @param array $sfOrderLines
+     * @return array
+     */
     protected function getOrderLines(array $sfOrderLines)
     {
         $orderLines = [];
