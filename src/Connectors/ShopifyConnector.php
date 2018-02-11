@@ -64,7 +64,7 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
 
         foreach ($sfOrders as $sfOrder) {
             $order = new Order();
-            $order->setDate(new \DateTime($sfOrder->created_at));
+            $order->setDate($this->getTimestamp($sfOrder->created_at));
             $order->setCustomer($this->getCustomer($sfOrder->customer));
             $order->setInvoiceAddress($this->getAddress($sfOrder->billing_address, InvoiceAddress::class));
             $order->setDeliveryAddress($this->getAddress($sfOrder->shipping_address, DeliveryAddress::class));

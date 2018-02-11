@@ -67,7 +67,7 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         $orders = [];
         foreach ($psOrders as $psOrder) {
             $order = new Order();
-            $order->setDate(new \DateTime($psOrder->date_add));
+            $order->setDate($this->getTimestamp($psOrder->date_add));
             $order->setCustomer($this->getCustomer($psOrder->id_customer));
             $order->setInvoiceAddress($this->getAddress($psOrder->id_address_invoice, InvoiceAddress::class));
             $order->setDeliveryAddress($this->getAddress($psOrder->id_address_delivery, DeliveryAddress::class));

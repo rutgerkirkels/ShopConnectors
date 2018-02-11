@@ -62,6 +62,7 @@ class DateRange
      */
     public function setEnd(\DateTime $end): void
     {
+
         $this->end = $end;
     }
 }

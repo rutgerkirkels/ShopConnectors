@@ -2,6 +2,7 @@
 
 namespace rutgerkirkels\ShopConnectors\Connectors;
 use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
+use rutgerkirkels\ShopConnectors\Helpers\DateTime;
 
 /**
  * Class AbstractConnector
@@ -20,6 +21,11 @@ class AbstractConnector
      * @var CredentialsInterface
      */
     protected $credentials;
+
+    /**
+     * @var string
+     */
+    protected $timezone;
 
     public function __construct(string $host = null, CredentialsInterface $credentials = null)
     {
@@ -44,6 +50,22 @@ class AbstractConnector
     }
 
     /**
+     * @return string
+     */
+    public function getTimezone(): string
+    {
+        return $this->timezone;
+    }
+
+    /**
+     * @param string $timezone
+     */
+    public function setTimezone(string $timezone): void
+    {
+        $this->timezone = $timezone;
+    }
+
+    /**
      * @return CredentialsInterface
      */
     public function getCredentials(): CredentialsInterface
@@ -59,6 +81,18 @@ class AbstractConnector
         $this->credentials = $credentials;
     }
 
-
+    protected function getTimestamp(string $timestamp) {
+        if (DateTime::hasTimeZone($timestamp)) {
+            return new \DateTime($timestamp);
+        }
+        else {
+            if (is_null($this->timezone)) {
+                return new \DateTime($timestamp, new \DateTimeZone(date_default_timezone_get()));
+            }
+            else {
+                return new \DateTime($timestamp, new \DateTimeZone($this->timezone));
+            }
+        }
+    }
 
 }
