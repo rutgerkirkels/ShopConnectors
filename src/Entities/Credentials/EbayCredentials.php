@@ -8,43 +8,70 @@ class EbayCredentials implements CredentialsInterface
     /**
      * @var string
      */
-    protected $id;
+    protected $appId;
 
     /**
      * @var string
      */
-    protected $secret;
+    protected $devId;
+
+    /**
+     * @var string
+     */
+    protected $certId;
 
     /**
      * @return string
      */
-    public function getId(): string
+    public function getAppId(): string
     {
-        return $this->id;
+        return $this->appId;
     }
 
     /**
-     * @param string $id
+     * @param string $appId
+     * @return EbayCredentials
      */
-    public function setId(string $id): void
+    public function setAppId(string $appId): self
     {
-        $this->id = $id;
+        $this->appId = $appId;
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getSecret(): string
+    public function getDevId(): string
     {
-        return $this->secret;
+        return $this->devId;
     }
 
     /**
-     * @param string $secret
+     * @param string $devId
+     * @return EbayCredentials
      */
-    public function setSecret(string $secret): void
+    public function setDevId(string $devId): self
     {
-        $this->secret = $secret;
+        $this->devId = $devId;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCertId(): string
+    {
+        return $this->certId;
+    }
+
+    /**
+     * @param string $certId
+     * @return EbayCredentials
+     */
+    public function setCertId(string $certId): self
+    {
+        $this->certId = $certId;
+        return $this;
     }
 
 
