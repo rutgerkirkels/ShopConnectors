@@ -62,9 +62,11 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
 
         $sfOrders = (json_decode((string) $response->getBody()))->orders;
 
+        $orders = [];
         foreach ($sfOrders as $sfOrder) {
             $order = new Order();
             $order->setDate($this->getTimestamp($sfOrder->created_at));
+            $order->setLastUpdate($this->getTimestamp($sfOrder->updated_at));
             $order->setCustomer($this->getCustomer($sfOrder->customer));
             $order->setInvoiceAddress($this->getAddress($sfOrder->billing_address, InvoiceAddress::class));
             $order->setDeliveryAddress($this->getAddress($sfOrder->shipping_address, DeliveryAddress::class));
