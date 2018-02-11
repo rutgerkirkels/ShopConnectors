@@ -3,7 +3,7 @@
 namespace rutgerkirkels\ShopConnectors\Models;
 
 
-class Customer
+class Customer extends AbstractModel
 {
     /**
      * @var string

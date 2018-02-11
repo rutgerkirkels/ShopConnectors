@@ -3,7 +3,7 @@
 namespace rutgerkirkels\ShopConnectors\Models;
 
 
-class Phone
+class Phone extends AbstractModel
 {
     /**
      * @var string

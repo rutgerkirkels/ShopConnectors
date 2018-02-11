@@ -3,7 +3,7 @@
 namespace rutgerkirkels\ShopConnectors\Models;
 
 
-class Order
+class Order extends AbstractModel
 {
     /**
      * @var \DateTime
@@ -110,5 +110,8 @@ class Order
         $this->orderLines = $orderLines;
     }
 
-
+    public function getChecksum() {
+        echo json_encode($this);
+        die;
+    }
 }

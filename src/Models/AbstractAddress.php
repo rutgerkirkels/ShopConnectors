@@ -3,7 +3,7 @@
 namespace rutgerkirkels\ShopConnectors\Models;
 
 
-class AbstractAddress
+class AbstractAddress extends AbstractModel
 {
     /**
      * @var string

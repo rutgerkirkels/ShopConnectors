@@ -70,8 +70,9 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
             $order->setDeliveryAddress($this->getAddress($sfOrder->shipping_address, DeliveryAddress::class));
             $order->setOrderLines($this->getOrderLines($sfOrder->line_items));
             $orders[] = $order;
-            return $orders;
         }
+
+        return $orders;
     }
 
     /**
