@@ -18,7 +18,8 @@
   "require": {
     "php": "^7.1",
     "guzzlehttp/guzzle": "^6.3",
-    "automattic/woocommerce": "^2.0"
+    "automattic/woocommerce": "^2.0",
+    "dts/ebay-sdk-php": "^14.0.0"
   },
   "require-dev": {
     "phpunit/phpunit": "4.0.*"
