@@ -43,6 +43,8 @@ class WoocommerceConnector extends AbstractConnector implements ConnectorInterfa
 
     /**
      * @param DateRange $dateRange
+     * @return array
+     * @throws \Exception
      */
     public function getOrdersByOrderDate(DateRange $dateRange)
     {
@@ -63,7 +65,7 @@ class WoocommerceConnector extends AbstractConnector implements ConnectorInterfa
             $order = new Order();
             $order->setDate($this->getTimestamp($wcOrder->created_at));
             $order->setLastUpdate($this->getTimestamp($wcOrder->updated_at));
-            $order->setCustomer($this->getCustomer($wcOrder->customer));
+            $order->setCustomer($this->getCustomer($wcOrder));
             $order->setInvoiceAddress($this->getAddress($wcOrder->billing_address, InvoiceAddress::class));
             $order->setDeliveryAddress($this->getAddress($wcOrder->shipping_address, DeliveryAddress::class));
             $order->setOrderLines($this->getOrderLines($wcOrder->line_items));
@@ -76,16 +78,19 @@ class WoocommerceConnector extends AbstractConnector implements ConnectorInterfa
     }
 
     /**
-     * @param \stdClass $wcCustomerData
+     * @param \stdClass $wcOrder
      * @return Customer
      */
-    protected function getCustomer(\stdClass $wcCustomerData)
+    protected function getCustomer(\stdClass $wcOrder)
     {
         $customer = new Customer();
-        $customer->setFirstName($wcCustomerData->first_name);
-        $customer->setLastName($wcCustomerData->last_name);
-        $customer->setEmail($wcCustomerData->email);
+        $customer->setFirstName($wcOrder->customer->first_name);
+        $customer->setLastName($wcOrder->customer->last_name);
+        $customer->setEmail($wcOrder->customer->email);
 
+        $externalData = new Customer\ExternalData();
+        $externalData->setId($wcOrder->customer->id);
+        $customer->setExternalData($externalData);
         return $customer;
     }
 
