@@ -42,7 +42,7 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
      * @param DateRange|null $dateRange
      * @return array
      */
-    public function getOrders(DateRange $dateRange = null)
+    public function getOrdersByOrderDate(DateRange $dateRange = null)
     {
         $query = [];
 

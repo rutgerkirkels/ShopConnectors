@@ -44,7 +44,7 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
      * @param DateRange $dateRange
      * @return array
      */
-    public function getOrders(DateRange $dateRange = null)
+    public function getOrdersByOrderDate(DateRange $dateRange = null)
     {
         $this->getCountryIsoCodes();
 
