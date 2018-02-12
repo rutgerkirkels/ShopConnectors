@@ -1,9 +1,14 @@
 <?php
 
-
 namespace rutgerkirkels\ShopConnectors\Models\Customer;
 
-
+/**
+ * Class ExternalData
+ * @package rutgerkirkels\ShopConnectors\Models\Customer
+ *
+ *
+ * @author Rutger Kirkels <rutger@kirkels.nl>
+ */
 class ExternalData
 {
     /**
