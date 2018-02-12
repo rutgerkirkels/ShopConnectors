@@ -3,7 +3,7 @@
 namespace rutgerkirkels\ShopConnectors\Connectors;
 
 use GuzzleHttp\Client;
-use rutgerkirkels\ShopConnectors\Entities\Credentials\PrestashopCredentials;
+use rutgerkirkels\ShopConnectors\Entities\Credentials\ShopifyCredentials;
 use rutgerkirkels\ShopConnectors\Models\Customer;
 use rutgerkirkels\ShopConnectors\Models\DateRange;
 use rutgerkirkels\ShopConnectors\Models\DeliveryAddress;
@@ -11,6 +11,8 @@ use rutgerkirkels\ShopConnectors\Models\InvoiceAddress;
 use rutgerkirkels\ShopConnectors\Models\Item;
 use rutgerkirkels\ShopConnectors\Models\Order;
 use rutgerkirkels\ShopConnectors\Models\OrderLine;
+use rutgerkirkels\ShopConnectors\Models\Payment;
+use rutgerkirkels\ShopConnectors\Models\Phone;
 
 /**
  * Class ShopifyConnector
@@ -30,7 +32,7 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
      * @param string $host
      * @param PrestashopCredentials $credentials
      */
-    public function __construct(string $host, PrestashopCredentials $credentials)
+    public function __construct(string $host, ShopifyCredentials $credentials)
     {
         parent::__construct($host, $credentials);
         $this->webservice = new Client([
@@ -68,11 +70,12 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
             $order = new Order();
             $order->setDate($this->getTimestamp($sfOrder->created_at));
             $order->setLastUpdate($this->getTimestamp($sfOrder->updated_at));
-            $order->setCustomer($this->getCustomer($sfOrder->customer));
+            $order->setCustomer($this->getCustomer($sfOrder));
             $order->setInvoiceAddress($this->getAddress($sfOrder->billing_address, InvoiceAddress::class));
             $order->setDeliveryAddress($this->getAddress($sfOrder->shipping_address, DeliveryAddress::class));
             $order->setOrderLines($this->getOrderLines($sfOrder->line_items));
             $order->setExternalData($this->getExternalData($sfOrder));
+            $order->setPayment($this->getPayment($sfOrder));
             $orders[] = $order;
         }
 
@@ -80,17 +83,23 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
     }
 
     /**
-     * @param \stdClass $customerData
+     * @param \stdClass $sfOrder
      * @return Customer
      */
-    protected function getCustomer(\stdClass $customerData)
+    protected function getCustomer(\stdClass $sfOrder)
     {
         $customer = new Customer();
-        $customer->setFirstName($customerData->first_name);
-        $customer->setLastName($customerData->last_name);
-        $customer->setEmail($customerData->email);
-        if (!is_null($customerData->phone)) {
-            $customer->addPhoneNumber($customerData->phone);
+        $customer->setFirstName($sfOrder->customer->first_name);
+        $customer->setLastName($sfOrder->customer->last_name);
+        if (is_null($sfOrder->customer->email)) {
+            $customer->setEmail($sfOrder->email);
+        }
+        else {
+            $customer->setEmail($sfOrder->customer->email);
+        }
+
+        if (!is_null($sfOrder->phone)) {
+            $customer->addPhoneNumber(new Phone($sfOrder->phone));
         }
         return $customer;
     }
@@ -108,7 +117,7 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
         $address->setCity($addressData->city);
         $address->setCountryIso2($addressData->country);
         if (!is_null($addressData->phone)) {
-            $address->addPhone($addressData->phone);
+            $address->addPhone(new Phone($addressData->phone));
         }
         return $address;
     }
@@ -144,5 +153,15 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
         $externalData->setOrderIp($sfOrder->client_details->browser_ip);
 
         return $externalData;
+    }
+
+    protected function getPayment(\stdClass $sfOrder)
+    {
+        $payment = new Payment();
+        $payment->setStatus($sfOrder->financial_status);
+
+        $payment->setType($sfOrder->payment_gateway_names[0]);
+
+        return $payment;
     }
 }

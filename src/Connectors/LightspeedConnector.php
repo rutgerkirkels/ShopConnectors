@@ -11,6 +11,7 @@ use rutgerkirkels\ShopConnectors\Models\InvoiceAddress;
 use rutgerkirkels\ShopConnectors\Models\Item;
 use rutgerkirkels\ShopConnectors\Models\Order;
 use rutgerkirkels\ShopConnectors\Models\OrderLine;
+use rutgerkirkels\ShopConnectors\Models\Payment;
 use rutgerkirkels\ShopConnectors\Models\Phone;
 
 /**
@@ -71,6 +72,7 @@ class LightspeedConnector extends AbstractConnector implements ConnectorInterfac
      * @param DateRange|null $dateRange
      * @param int $page
      * @return array
+     * @throws \Exception
      */
     protected function getOrdersByOrderDateAndPage(DateRange $dateRange = null, int $page = 1) {
         $query = [
@@ -99,6 +101,7 @@ class LightspeedConnector extends AbstractConnector implements ConnectorInterfac
             $order->setDeliveryAddress($this->getAddress($lsOrder, DeliveryAddress::class));
             $order->setOrderLines($this->getOrderLines($lsOrder->id));
             $order->setExternalData(($this->getExternalData($lsOrder)));
+            $order->setPayment($this->getPayment($lsOrder));
             $orders[] = $order;
         }
 
@@ -193,11 +196,25 @@ class LightspeedConnector extends AbstractConnector implements ConnectorInterfac
      * @param \stdClass $lsOrder
      * @return Order\ExternalData
      */
-    protected function getExternalData(\stdClass $lsOrder) {
+    protected function getExternalData(\stdClass $lsOrder)
+    {
         $externalData = new Order\ExternalData();
         $externalData->setOrderId($lsOrder->id);
         $externalData->setOrderCode($lsOrder->number);
         $externalData->setOrderIp($lsOrder->remoteIp);
         return $externalData;
+    }
+
+    /**
+     * @param \stdClass $lsOrder
+     * @return Payment
+     * @throws \Exception
+     */
+    protected function getPayment(\stdClass $lsOrder)
+    {
+        $payment = new Payment();
+        $payment->setStatus($lsOrder->paymentStatus);
+        $payment->setType($lsOrder->paymentId);
+        return $payment;
     }
 }

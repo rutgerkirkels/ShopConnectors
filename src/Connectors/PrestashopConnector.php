@@ -12,6 +12,7 @@ use rutgerkirkels\ShopConnectors\Models\InvoiceAddress;
 use rutgerkirkels\ShopConnectors\Models\Item;
 use rutgerkirkels\ShopConnectors\Models\Order;
 use rutgerkirkels\ShopConnectors\Models\OrderLine;
+use rutgerkirkels\ShopConnectors\Models\Payment;
 
 /**
  * Class PrestashopConnector
@@ -80,6 +81,7 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
             $order->setDeliveryAddress($this->getAddress($psOrder->id_address_delivery, DeliveryAddress::class));
             $order->setOrderLines($this->getOrderLines($psOrder->id));
             $order->setExternalData(($this->getExternalData($psOrder)));
+            $order->setPayment($this->getPayment($psOrder));
             $orders[] = $order;
         }
 
@@ -209,5 +211,23 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         $externalData->setOrderCode($psOrder->reference);
 
         return $externalData;
+    }
+
+    protected function getPayment(\stdClass $psOrder)
+    {
+        $payment = new Payment();
+
+        $totalAmount = floatval($psOrder->total_products_wt) + floatval($psOrder->total_shipping_tax_incl);
+        if (floatval($psOrder->total_paid_tax_incl) === $totalAmount) {
+            $payment->setStatus('paid');
+        }
+        elseif ($totalAmount - floatval($psOrder->total_paid_tax_incl) > 0) {
+            $payment->setStatus('partially_paid');
+        }
+        else {
+            $payment->setStatus('not_paid');
+        }
+        $payment->setType($psOrder->payment);
+        return $payment;
     }
 }

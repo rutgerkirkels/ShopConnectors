@@ -10,6 +10,7 @@ use rutgerkirkels\ShopConnectors\Models\Order;
 use rutgerkirkels\ShopConnectors\Models\InvoiceAddress;
 use rutgerkirkels\ShopConnectors\Models\DeliveryAddress;
 use rutgerkirkels\ShopConnectors\Models\OrderLine;
+use rutgerkirkels\ShopConnectors\Models\Payment;
 
 /**
  * Class MagentoV1Connector
@@ -83,7 +84,7 @@ class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
             $order->setDeliveryAddress($this->getAddress($magentoOrder->shipping_address, DeliveryAddress::class));
             $order->setOrderLines($this->getOrderLines($magentoOrder->items));
             $order->setExternalData(($this->getExternalData($magentoOrder)));
-
+            $order->setPayment($this->getPayment($magentoOrder));
             $orders[] = $order;
         }
 
@@ -166,5 +167,28 @@ class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
         $externalData->setOrderIp($magentoOrder->remote_ip);
 
         return $externalData;
+    }
+
+    /**
+     * @param \stdClass $order
+     * @return Payment
+     * @throws \Exception
+     */
+    protected function getPayment(\stdClass $order)
+    {
+        // TODO Get payment type
+        $payment = new Payment();
+
+        if (floatval($order->grand_total) === floatval($order->total_paid)) {
+            $payment->setStatus('paid');
+        }
+        elseif (floatval($order->grand_total) - floatval($order->total_paid) > 0) {
+            $payment->setStatus('partially_paid');
+        }
+        elseif (floatval($order->grand_total) - floatval($order->total_paid) === floatval($order->grand_total)) {
+            $payment->setStatus('not_paid');
+        }
+
+        return $payment;
     }
 }

@@ -48,6 +48,11 @@ class Order extends AbstractModel
     protected $externalData;
 
     /**
+     * @var Payment
+     */
+    protected $payment;
+
+    /**
      * @return \DateTime
      */
     public function getDate(): \DateTime
@@ -157,6 +162,22 @@ class Order extends AbstractModel
     public function setExternalData(ExternalData $externalData): void
     {
         $this->externalData = $externalData;
+    }
+
+    /**
+     * @return Payment
+     */
+    public function getPayment(): Payment
+    {
+        return $this->payment;
+    }
+
+    /**
+     * @param Payment $payment
+     */
+    public function setPayment(Payment $payment): void
+    {
+        $this->payment = $payment;
     }
 
     public function getChecksum() {

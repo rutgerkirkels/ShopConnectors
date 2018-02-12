@@ -11,6 +11,7 @@ use rutgerkirkels\ShopConnectors\Models\InvoiceAddress;
 use rutgerkirkels\ShopConnectors\Models\Item;
 use rutgerkirkels\ShopConnectors\Models\Order;
 use rutgerkirkels\ShopConnectors\Models\OrderLine;
+use rutgerkirkels\ShopConnectors\Models\Payment;
 
 /**
  * Class WoocommerceConnector
@@ -67,6 +68,7 @@ class WoocommerceConnector extends AbstractConnector implements ConnectorInterfa
             $order->setDeliveryAddress($this->getAddress($wcOrder->shipping_address, DeliveryAddress::class));
             $order->setOrderLines($this->getOrderLines($wcOrder->line_items));
             $order->setExternalData($this->getExternalData($wcOrder));
+            $order->setPayment($this->getPayment($wcOrder));
             $orders[] = $order;
         }
 
@@ -137,5 +139,25 @@ class WoocommerceConnector extends AbstractConnector implements ConnectorInterfa
         $externalData->setOrderIp($wcOrder->customer_ip);
 
         return $externalData;
+    }
+
+    /**
+     * @param \stdClass $wcOrder
+     * @return Payment
+     * @throws \Exception
+     */
+    protected function getPayment(\stdClass $wcOrder)
+    {
+        $payment = new Payment();
+        if ($wcOrder->payment_details->paid) {
+            $payment->setStatus('paid');
+        }
+        else {
+            $payment->setStatus('not_paid');
+        }
+
+        $payment->setType($wcOrder->payment_details->method_id);
+
+        return $payment;
     }
 }
