@@ -2,7 +2,7 @@
 
 namespace rutgerkirkels\ShopConnectors\Connectors;
 
-use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
+use rutgerkirkels\ShopConnectors\Entities\Credentials\MagentoV1Credentials;
 use rutgerkirkels\ShopConnectors\Models\Customer;
 use rutgerkirkels\ShopConnectors\Models\DateRange;
 use rutgerkirkels\ShopConnectors\Models\Item;
@@ -31,10 +31,10 @@ class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
 
     /**
      * MagentoV1Connector constructor.
-     * @param string|null $host
-     * @param CredentialsInterface|null $credentials
+     * @param string $host
+     * @param MagentoV1Credentials $credentials
      */
-    public function __construct(string $host = null, CredentialsInterface $credentials = null)
+    public function __construct(string $host, MagentoV1Credentials $credentials)
     {
         parent::__construct($host, $credentials);
         $this->webservice = new \SoapClient($this->getHost() . '/index.php/api/v2_soap?wsdl');

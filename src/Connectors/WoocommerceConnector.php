@@ -3,7 +3,7 @@
 namespace rutgerkirkels\ShopConnectors\Connectors;
 
 use Automattic\WooCommerce\Client;
-use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
+use rutgerkirkels\ShopConnectors\Entities\Credentials\WoocommerceCredentials;
 use rutgerkirkels\ShopConnectors\Models\Customer;
 use rutgerkirkels\ShopConnectors\Models\DateRange;
 use rutgerkirkels\ShopConnectors\Models\DeliveryAddress;
@@ -27,10 +27,10 @@ class WoocommerceConnector extends AbstractConnector implements ConnectorInterfa
 
     /**
      * WoocommerceConnector constructor.
-     * @param string|null $host
-     * @param CredentialsInterface|null $credentials
+     * @param string $host
+     * @param WoocommerceCredentials $credentials
      */
-    public function __construct(string $host = null, CredentialsInterface $credentials = null)
+    public function __construct(string $host, WoocommerceCredentials $credentials)
     {
         parent::__construct($host, $credentials);
         $this->webservice = new Client(
