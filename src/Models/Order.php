@@ -2,7 +2,6 @@
 
 namespace rutgerkirkels\ShopConnectors\Models;
 
-use rutgerkirkels\ShopConnectors\Helpers\DateTime;
 use rutgerkirkels\ShopConnectors\Models\Order\ExternalData;
 
 /**

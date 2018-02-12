@@ -2,7 +2,6 @@
 
 namespace rutgerkirkels\ShopConnectors\Connectors;
 
-
 use Automattic\WooCommerce\Client;
 use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
 use rutgerkirkels\ShopConnectors\Models\Customer;
@@ -16,6 +15,7 @@ use rutgerkirkels\ShopConnectors\Models\OrderLine;
 /**
  * Class WoocommerceConnector
  * @package rutgerkirkels\ShopConnectors\Connectors
+ *
  * @author Rutger Kirkels <rutger@kirkels.nl>
  */
 class WoocommerceConnector extends AbstractConnector implements ConnectorInterface

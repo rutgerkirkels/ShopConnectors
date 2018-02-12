@@ -1,6 +1,7 @@
 <?php
 
 namespace rutgerkirkels\ShopConnectors\Connectors;
+
 use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
 use rutgerkirkels\ShopConnectors\Helpers\DateTime;
 

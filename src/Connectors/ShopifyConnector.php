@@ -15,6 +15,7 @@ use rutgerkirkels\ShopConnectors\Models\OrderLine;
 /**
  * Class ShopifyConnector
  * @package rutgerkirkels\ShopConnectors\Connectors
+ *
  * @author Rutger Kirkels <rutger@kirkels.nl>
  */
 class ShopifyConnector extends AbstractConnector implements ConnectorInterface

@@ -2,7 +2,6 @@
 
 namespace rutgerkirkels\ShopConnectors\Connectors;
 
-
 use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
 use rutgerkirkels\ShopConnectors\Models\Customer;
 use rutgerkirkels\ShopConnectors\Models\DateRange;
@@ -15,6 +14,7 @@ use rutgerkirkels\ShopConnectors\Models\OrderLine;
 /**
  * Class MagentoV1Connector
  * @package rutgerkirkels\ShopConnectors\Connectors
+ *
  * @author Rutger Kirkels <rutger@kirkels.nl>
  */
 class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
