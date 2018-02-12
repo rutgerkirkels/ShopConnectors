@@ -82,6 +82,10 @@ class AbstractConnector
         $this->credentials = $credentials;
     }
 
+    /**
+     * @param string $timestamp
+     * @return \DateTime
+     */
     protected function getTimestamp(string $timestamp) {
         if (DateTime::hasTimeZone($timestamp)) {
             return new \DateTime($timestamp);
