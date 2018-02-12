@@ -1,6 +1,7 @@
 <?php
 
 namespace rutgerkirkels\ShopConnectors\Connectors;
+use rutgerkirkels\ShopConnectors\Models\DateRange;
 
 /**
  * Interface ConnectorInterface
@@ -10,5 +11,5 @@ namespace rutgerkirkels\ShopConnectors\Connectors;
  */
 interface ConnectorInterface
 {
-
+    public function getOrdersByOrderDate(DateRange $dateRange);
 }
