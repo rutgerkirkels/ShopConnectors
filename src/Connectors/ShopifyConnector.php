@@ -101,6 +101,11 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
         if (!is_null($sfOrder->phone)) {
             $customer->addPhoneNumber(new Phone($sfOrder->phone));
         }
+
+        $externalData = new Customer\ExternalData();
+        $externalData->setId($sfOrder->customer->id);
+
+        $customer->setExternalData($externalData);
         return $customer;
     }
 
