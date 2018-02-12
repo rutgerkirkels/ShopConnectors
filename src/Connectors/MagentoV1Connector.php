@@ -102,6 +102,10 @@ class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
         $customer->setLastName($magentoOrder->customer_lastname);
         $customer->setEmail($magentoOrder->customer_email);
 
+        // If the the customer is registered, we're going to retrieve more data
+        if (!boolval($magentoOrder->customer_is_guest)) {
+            // TODO Retrieve additional customer data
+        }
         return $customer;
     }
 

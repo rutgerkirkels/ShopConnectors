@@ -14,24 +14,19 @@ class ConnectorFactory
 {
 
     /**
-     * @var AbstractConnector
-     */
-    protected $connectorClass;
-
-    /**
      * @param string $shopType
      * @param string $host
      * @param CredentialsInterface $credentials
      * @return AbstractConnector
      * @throws \Exception
      */
-    public function build(string $shopType, string $host, CredentialsInterface $credentials)
+    public static function build(string $shopType, string $host, CredentialsInterface $credentials)
     {
         $class = __NAMESPACE__ . '\\' . $shopType . 'Connector';
         if (class_exists($class)) {
-            $this->connectorClass = new $class($host, $credentials);
+            $connectorClass = new $class($host, $credentials);
 
-            return $this->connectorClass;
+            return $connectorClass;
         }
         else {
             throw new \Exception($shopType . ' is an invalid shopType');
