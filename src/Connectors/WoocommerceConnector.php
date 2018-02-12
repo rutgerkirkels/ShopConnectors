@@ -43,7 +43,7 @@ class WoocommerceConnector extends AbstractConnector implements ConnectorInterfa
     /**
      * @param DateRange $dateRange
      */
-    public function getOrders(DateRange $dateRange)
+    public function getOrdersByOrderDate(DateRange $dateRange)
     {
         if (!is_null($dateRange)) {
             if (!is_null($dateRange->getStart())) {
@@ -55,20 +55,22 @@ class WoocommerceConnector extends AbstractConnector implements ConnectorInterfa
             }
         }
 
-        $response = $this->webservice->get('orders', $params);
+        $wcOrders = $this->webservice->get('orders', $params)->orders;
 
         $orders = [];
-        foreach ($response->orders as $wcOrder) {
-
+        foreach ($wcOrders as $wcOrder) {
             $order = new Order();
-            $order->setDate(new \DateTime($wcOrder->created_at));
+            $order->setDate($this->getTimestamp($wcOrder->created_at));
+            $order->setLastUpdate($this->getTimestamp($wcOrder->updated_at));
             $order->setCustomer($this->getCustomer($wcOrder->customer));
             $order->setInvoiceAddress($this->getAddress($wcOrder->billing_address, InvoiceAddress::class));
             $order->setDeliveryAddress($this->getAddress($wcOrder->shipping_address, DeliveryAddress::class));
             $order->setOrderLines($this->getOrderLines($wcOrder->line_items));
+            $order->setExternalData($this->getExternalData($wcOrder));
             $orders[] = $order;
         }
-        var_dump($orders);
+
+        return $orders;
     }
 
     /**
@@ -121,5 +123,19 @@ class WoocommerceConnector extends AbstractConnector implements ConnectorInterfa
         }
 
         return $orderLines;
+    }
+
+    /**
+     * @param \stdClass $wcOrder
+     * @return Order\ExternalData
+     */
+    protected function getExternalData(\stdClass $wcOrder)
+    {
+        $externalData = new Order\ExternalData();
+        $externalData->setOrderId($wcOrder->id);
+        $externalData->setOrderCode($wcOrder->order_number);
+        $externalData->setOrderIp($wcOrder->customer_ip);
+
+        return $externalData;
     }
 }
