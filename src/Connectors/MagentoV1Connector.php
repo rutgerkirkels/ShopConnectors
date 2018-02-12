@@ -104,7 +104,9 @@ class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
 
         // If the the customer is registered, we're going to retrieve more data
         if (!boolval($magentoOrder->customer_is_guest)) {
-            // TODO Retrieve additional customer data
+            $externalData = new Customer\ExternalData();
+            $externalData->setId(intval($magentoOrder->customer_id));
+            $customer->setExternalData($externalData);
         }
         return $customer;
     }

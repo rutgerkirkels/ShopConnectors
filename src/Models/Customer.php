@@ -1,6 +1,7 @@
 <?php
 
 namespace rutgerkirkels\ShopConnectors\Models;
+use rutgerkirkels\ShopConnectors\Models\Customer\ExternalData;
 
 /**
  * Class Customer
@@ -54,6 +55,11 @@ class Customer extends AbstractModel
      * @var string;
      */
     protected $companyVatId;
+
+    /**
+     * @var ExternalData
+     */
+    protected $externalData;
 
     /**
      * @return string
@@ -210,6 +216,22 @@ class Customer extends AbstractModel
     public function setCompanyVatId(string $companyVatId): void
     {
         $this->companyVatId = $companyVatId;
+    }
+
+    /**
+     * @return ExternalData
+     */
+    public function getExternalData(): ExternalData
+    {
+        return $this->externalData;
+    }
+
+    /**
+     * @param ExternalData $externalData
+     */
+    public function setExternalData(ExternalData $externalData): void
+    {
+        $this->externalData = $externalData;
     }
 
     /**
