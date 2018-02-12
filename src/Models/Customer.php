@@ -46,6 +46,16 @@ class Customer extends AbstractModel
     protected $dob;
 
     /**
+     * @var string
+     */
+    protected $companyName;
+
+    /**
+     * @var string;
+     */
+    protected $companyVatId;
+
+    /**
      * @return string
      */
     public function getFirstName(): string
@@ -170,4 +180,47 @@ class Customer extends AbstractModel
         $this->dob = $dob;
     }
 
+    /**
+     * @return string
+     */
+    public function getCompanyName(): string
+    {
+        return $this->companyName;
+    }
+
+    /**
+     * @param string $companyName
+     */
+    public function setCompanyName(string $companyName): void
+    {
+        $this->companyName = $companyName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompanyVatId(): string
+    {
+        return $this->companyVatId;
+    }
+
+    /**
+     * @param string $companyVatId
+     */
+    public function setCompanyVatId(string $companyVatId): void
+    {
+        $this->companyVatId = $companyVatId;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCompany()
+    {
+        if (!is_null($this->companyName) || !is_null($this->companyVatId)) {
+            return true;
+        }
+
+        return false;
+    }
 }
