@@ -14,6 +14,11 @@ class Customer extends AbstractModel
     /**
      * @var string
      */
+    protected $gender;
+
+    /**
+     * @var string
+     */
     protected $firstName;
 
     /**
@@ -60,6 +65,26 @@ class Customer extends AbstractModel
      * @var ExternalData
      */
     protected $externalData;
+
+    /**
+     * @return string
+     */
+    public function getGender(): string
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param string $gender
+     * @throws \Exception
+     */
+    public function setGender(string $gender): void
+    {
+        if (strtolower($gender) !== 'male' && strtolower($gender) !== 'female') {
+            throw new \Exception('Gender can only be male or female');
+        }
+        $this->gender = $gender;
+    }
 
     /**
      * @return string
