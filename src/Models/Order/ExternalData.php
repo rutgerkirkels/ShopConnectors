@@ -26,6 +26,11 @@ class ExternalData
     protected $orderIp;
 
     /**
+     * @var string
+     */
+    protected $json;
+
+    /**
      * @return int
      */
     public function getOrderId(): int
@@ -71,6 +76,22 @@ class ExternalData
     public function setOrderIp(string $orderIp): void
     {
         $this->orderIp = $orderIp;
+    }
+
+    /**
+     * @return string
+     */
+    public function getJson(): string
+    {
+        return $this->json;
+    }
+
+    /**
+     * @param string $json
+     */
+    public function setJson(string $json): void
+    {
+        $this->json = $json;
     }
 
 

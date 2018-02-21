@@ -17,7 +17,7 @@ class AmazonCredentials implements CredentialsInterface
     /**
      * @var string
      */
-    protected $marketpalceId;
+    protected $marketplaceId;
 
     /**
      * @var string
@@ -43,10 +43,10 @@ class AmazonCredentials implements CredentialsInterface
     }
 
     /**
-     * @param string $marchantId
+     * @param string $merchantId
      * @return AmazonCredentials
      */
-    public function setMaerchantId(string $merchantId): self
+    public function setMerchantId(string $merchantId): self
     {
         $this->merchantId = $merchantId;
         return $this;
@@ -55,18 +55,18 @@ class AmazonCredentials implements CredentialsInterface
     /**
      * @return string
      */
-    public function getMarketpalceId(): string
+    public function getMarketplaceId(): string
     {
-        return $this->marketpalceId;
+        return $this->marketplaceId;
     }
 
     /**
-     * @param string $marketpalceId
+     * @param string $marketplaceId
      * @return AmazonCredentials
      */
-    public function setMarketpalceId(string $marketpalceId): self
+    public function setMarketplaceId(string $marketplaceId): self
     {
-        $this->marketpalceId = $marketpalceId;
+        $this->marketplaceId = $marketplaceId;
         return $this;
     }
 
