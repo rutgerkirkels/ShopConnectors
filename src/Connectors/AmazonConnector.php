@@ -2,7 +2,6 @@
 
 namespace rutgerkirkels\ShopConnectors\Connectors;
 
-
 use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
 use rutgerkirkels\ShopConnectors\Models\AbstractAddress;
 use rutgerkirkels\ShopConnectors\Models\Customer;
@@ -14,6 +13,11 @@ use rutgerkirkels\ShopConnectors\Models\Order;
 use rutgerkirkels\ShopConnectors\Models\OrderLine;
 use rutgerkirkels\ShopConnectors\Models\Phone;
 
+/**
+ * Class AmazonConnector
+ * @package rutgerkirkels\ShopConnectors\Connectors
+ * @author Rutger Kirkels <rutger@kirkels.nl>
+ */
 class AmazonConnector extends AbstractConnector implements ConnectorInterface
 {
     /**
