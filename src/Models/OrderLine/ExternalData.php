@@ -25,7 +25,7 @@ class ExternalData
     /**
      * @param string $json
      */
-    public function setJson(string $json): void
+    public function setJson(string $json)
     {
         $this->json = $json;
     }

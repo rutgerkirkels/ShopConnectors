@@ -97,7 +97,7 @@ class Customer extends AbstractModel
     /**
      * @param string $firstName
      */
-    public function setFirstName(string $firstName): void
+    public function setFirstName(string $firstName)
     {
         $this->firstName = $firstName;
     }
@@ -113,7 +113,7 @@ class Customer extends AbstractModel
     /**
      * @param string $middleName
      */
-    public function setMiddleName(string $middleName): void
+    public function setMiddleName(string $middleName)
     {
         $this->middleName = $middleName;
     }
@@ -129,7 +129,7 @@ class Customer extends AbstractModel
     /**
      * @param string $lastName
      */
-    public function setLastName(string $lastName): void
+    public function setLastName(string $lastName)
     {
         $this->lastName = $lastName;
     }
@@ -157,7 +157,7 @@ class Customer extends AbstractModel
     /**
      * @param string $fullName
      */
-    public function setFullName(string $fullName): void
+    public function setFullName(string $fullName)
     {
         $this->fullName = $fullName;
     }
@@ -173,7 +173,7 @@ class Customer extends AbstractModel
     /**
      * @param string $email
      */
-    public function setEmail(string $email): void
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
@@ -189,7 +189,7 @@ class Customer extends AbstractModel
     /**
      * @param Phone $phone
      */
-    public function addPhoneNumber(Phone $phone): void
+    public function addPhoneNumber(Phone $phone)
     {
         $this->phoneNumbers[] = $phone;
     }
@@ -206,7 +206,7 @@ class Customer extends AbstractModel
     /**
      * @param \DateTime $dob
      */
-    public function setDob(\DateTime $dob): void
+    public function setDob(\DateTime $dob)
     {
         $this->dob = $dob;
     }
@@ -222,7 +222,7 @@ class Customer extends AbstractModel
     /**
      * @param string $companyName
      */
-    public function setCompanyName(string $companyName): void
+    public function setCompanyName(string $companyName)
     {
         $this->companyName = $companyName;
     }
@@ -238,7 +238,7 @@ class Customer extends AbstractModel
     /**
      * @param string $companyVatId
      */
-    public function setCompanyVatId(string $companyVatId): void
+    public function setCompanyVatId(string $companyVatId)
     {
         $this->companyVatId = $companyVatId;
     }
@@ -254,7 +254,7 @@ class Customer extends AbstractModel
     /**
      * @param ExternalData $externalData
      */
-    public function setExternalData(ExternalData $externalData): void
+    public function setExternalData(ExternalData $externalData)
     {
         $this->externalData = $externalData;
     }

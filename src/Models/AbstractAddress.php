@@ -51,7 +51,7 @@ class AbstractAddress extends AbstractModel
     /**
      * @param string $address
      */
-    public function setAddress(string $address): void
+    public function setAddress(string $address)
     {
         $this->address = $address;
     }
@@ -67,7 +67,7 @@ class AbstractAddress extends AbstractModel
     /**
      * @param string $postalCode
      */
-    public function setPostalCode(string $postalCode): void
+    public function setPostalCode(string $postalCode)
     {
         $this->postalCode = $postalCode;
     }
@@ -99,7 +99,7 @@ class AbstractAddress extends AbstractModel
     /**
      * @param string $countryIso2
      */
-    public function setCountryIso2(string $countryIso2): void
+    public function setCountryIso2(string $countryIso2)
     {
         $this->countryIso2 = $countryIso2;
     }
@@ -115,7 +115,7 @@ class AbstractAddress extends AbstractModel
     /**
      * @param string $country
      */
-    public function setCountry(string $country): void
+    public function setCountry(string $country)
     {
         $this->country = $country;
     }
@@ -132,7 +132,7 @@ class AbstractAddress extends AbstractModel
      * @param string $phoneNumber
      * @param string $type
      */
-    public function addPhone(string $phoneNumber, string $type = 'landline'): void
+    public function addPhone(string $phoneNumber, string $type = 'landline')
     {
         $phone = new Phone($phoneNumber, $type);
 

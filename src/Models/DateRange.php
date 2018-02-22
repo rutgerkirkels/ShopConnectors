@@ -53,7 +53,7 @@ class DateRange
     /**
      * @param \DateTime $start
      */
-    public function setStart(\DateTime $start): void
+    public function setStart(\DateTime $start)
     {
         $this->start = $start;
     }
@@ -69,7 +69,7 @@ class DateRange
     /**
      * @param \DateTime $end
      */
-    public function setEnd(\DateTime $end): void
+    public function setEnd(\DateTime $end)
     {
         $this->end = $end;
     }

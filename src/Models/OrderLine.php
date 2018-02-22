@@ -51,7 +51,7 @@ class OrderLine
     /**
      * @param ExternalData $externalData
      */
-    public function setExternalData(ExternalData $externalData): void
+    public function setExternalData(ExternalData $externalData)
     {
         $this->externalData = $externalData;
     }

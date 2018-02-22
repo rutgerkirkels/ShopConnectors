@@ -41,7 +41,7 @@ class ExternalData
     /**
      * @param int $orderId
      */
-    public function setOrderId(int $orderId): void
+    public function setOrderId(int $orderId)
     {
         $this->orderId = $orderId;
     }
@@ -57,7 +57,7 @@ class ExternalData
     /**
      * @param string $orderCode
      */
-    public function setOrderCode(string $orderCode): void
+    public function setOrderCode(string $orderCode)
     {
         $this->orderCode = $orderCode;
     }
@@ -73,7 +73,7 @@ class ExternalData
     /**
      * @param string $orderIp
      */
-    public function setOrderIp(string $orderIp): void
+    public function setOrderIp(string $orderIp)
     {
         $this->orderIp = $orderIp;
     }
@@ -89,7 +89,7 @@ class ExternalData
     /**
      * @param string $json
      */
-    public function setJson(string $json): void
+    public function setJson(string $json)
     {
         $this->json = $json;
     }

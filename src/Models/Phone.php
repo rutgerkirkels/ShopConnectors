@@ -42,7 +42,7 @@ class Phone extends AbstractModel
     /**
      * @param string $number
      */
-    public function setNumber(string $number): void
+    public function setNumber(string $number)
     {
         $this->number = $number;
     }
@@ -58,7 +58,7 @@ class Phone extends AbstractModel
     /**
      * @param string $type
      */
-    public function setType(string $type): void
+    public function setType(string $type)
     {
         $this->type = $type;
     }
