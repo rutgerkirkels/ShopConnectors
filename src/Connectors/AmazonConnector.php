@@ -113,11 +113,11 @@ class AmazonConnector extends AbstractConnector implements ConnectorInterface
      * AmazonConnector constructor.
      * @param string $host
      * @param CredentialsInterface $credentials
+     * @throws \Exception
      */
     public function __construct(string $host, CredentialsInterface $credentials)
     {
         parent::__construct($host, $credentials);
-        $test = $this->getConfig();
         $this->webservice = new \MarketplaceWebServiceOrders_Client(
             $this->credentials->getKeyId(),
             $this->credentials->getSecretKey(),
@@ -125,8 +125,6 @@ class AmazonConnector extends AbstractConnector implements ConnectorInterface
             'v1',
             $this->getConfig()
         );
-
-
     }
 
     /**

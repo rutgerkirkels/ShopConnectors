@@ -28,6 +28,11 @@ class AbstractConnector
      */
     protected $timezone;
 
+    /**
+     * @var string
+     */
+    protected $lastError;
+
     public function __construct(string $host = null, CredentialsInterface $credentials = null)
     {
         $this->host = $host;
@@ -98,6 +103,14 @@ class AbstractConnector
                 return new \DateTime($timestamp, new \DateTimeZone($this->timezone));
             }
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastError(): string
+    {
+        return $this->lastError;
     }
 
 }
