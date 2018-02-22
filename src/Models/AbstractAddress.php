@@ -83,7 +83,7 @@ class AbstractAddress extends AbstractModel
     /**
      * @param string $city
      */
-    public function setCity(string $city): void
+    public function setCity(string $city)
     {
         $this->city = $city;
     }
