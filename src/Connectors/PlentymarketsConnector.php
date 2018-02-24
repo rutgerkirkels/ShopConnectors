@@ -287,7 +287,7 @@ class PlentymarketsConnector extends AbstractConnector implements ConnectorInter
         $externalData = new Order\ExternalData();
         $externalData->setOrderId($pmOrder->id);
         $externalData->setOrderCode($pmOrder->id);
-
+        $externalData->setJson(json_encode($pmOrder));
         return $externalData;
     }
 

@@ -169,9 +169,9 @@ class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
     {
         $externalData = new Order\ExternalData();
         $externalData->setOrderId(intval($magentoOrder->order_id));
-        $externalData->setOrderCode($magentoOrder->increment_id             );
+        $externalData->setOrderCode($magentoOrder->increment_id);
         $externalData->setOrderIp($magentoOrder->remote_ip);
-
+        $externalData->setJson(json_encode($magentoOrder));
         return $externalData;
     }
 

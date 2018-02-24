@@ -156,7 +156,7 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
         $externalData->setOrderId($sfOrder->id);
         $externalData->setOrderCode(strval($sfOrder->number));
         $externalData->setOrderIp($sfOrder->client_details->browser_ip);
-
+        $externalData->setJson(json_encode($sfOrder));
         return $externalData;
     }
 
