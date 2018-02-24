@@ -35,14 +35,16 @@ class Payment
 
     /**
      * @param string $status
+     * @return Payment
      * @throws \Exception
      */
-    public function setStatus(string $status): void
+    public function setStatus(string $status): self
     {
         if (!in_array($status, $this->statusses)) {
             throw new \Exception($status . ' is not a valid status');
         }
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -54,11 +56,13 @@ class Payment
     }
 
     /**
-     * @param mixed $type
+     * @param $type
+     * @return Payment
      */
-    public function setType($type)
+    public function setType($type): self
     {
         $this->type = $type;
+        return $this;
     }
 
 

@@ -50,8 +50,9 @@ class AbstractAddress extends AbstractModel
 
     /**
      * @param string $address
+     * @return AbstractAddress
      */
-    public function setAddress(string $address)
+    public function setAddress(string $address) : self
     {
         $this->address = $address;
     }
@@ -66,10 +67,12 @@ class AbstractAddress extends AbstractModel
 
     /**
      * @param string $postalCode
+     * @return AbstractAddress
      */
-    public function setPostalCode(string $postalCode)
+    public function setPostalCode(string $postalCode) : self
     {
         $this->postalCode = $postalCode;
+        return $this;
     }
 
     /**
@@ -82,10 +85,12 @@ class AbstractAddress extends AbstractModel
 
     /**
      * @param string $city
+     * @return AbstractAddress
      */
-    public function setCity(string $city)
+    public function setCity(string $city) : self
     {
         $this->city = $city;
+        return $this;
     }
 
     /**
@@ -98,10 +103,12 @@ class AbstractAddress extends AbstractModel
 
     /**
      * @param string $countryIso2
+     * @return AbstractAddress
      */
-    public function setCountryIso2(string $countryIso2)
+    public function setCountryIso2(string $countryIso2) : self
     {
         $this->countryIso2 = $countryIso2;
+        return $this;
     }
 
     /**
@@ -114,10 +121,12 @@ class AbstractAddress extends AbstractModel
 
     /**
      * @param string $country
+     * @return AbstractAddress
      */
-    public function setCountry(string $country)
+    public function setCountry(string $country) : self
     {
         $this->country = $country;
+        return $this;
     }
 
     /**
@@ -131,12 +140,14 @@ class AbstractAddress extends AbstractModel
     /**
      * @param string $phoneNumber
      * @param string $type
+     * @return AbstractAddress
      */
-    public function addPhone(string $phoneNumber, string $type = 'landline')
+    public function addPhone(string $phoneNumber, string $type = 'landline') : self
     {
         $phone = new Phone($phoneNumber, $type);
-
         $this->phoneNumbers[] = $phone;
+
+        return $this;
     }
 
 

@@ -52,10 +52,12 @@ class DateRange
 
     /**
      * @param \DateTime $start
+     * @return DateRange
      */
-    public function setStart(\DateTime $start)
+    public function setStart(\DateTime $start) : self
     {
         $this->start = $start;
+        return $this;
     }
 
     /**
@@ -68,9 +70,11 @@ class DateRange
 
     /**
      * @param \DateTime $end
+     * @return DateRange
      */
-    public function setEnd(\DateTime $end)
+    public function setEnd(\DateTime $end) : self
     {
         $this->end = $end;
+        return $this;
     }
 }

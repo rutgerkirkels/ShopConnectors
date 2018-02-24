@@ -76,14 +76,16 @@ class Customer extends AbstractModel
 
     /**
      * @param string $gender
+     * @return Customer
      * @throws \Exception
      */
-    public function setGender(string $gender): void
+    public function setGender(string $gender): self
     {
         if (strtolower($gender) !== 'male' && strtolower($gender) !== 'female') {
             throw new \Exception('Gender can only be male or female');
         }
         $this->gender = $gender;
+        return $this;
     }
 
     /**
@@ -96,10 +98,12 @@ class Customer extends AbstractModel
 
     /**
      * @param string $firstName
+     * @return Customer
      */
-    public function setFirstName(string $firstName)
+    public function setFirstName(string $firstName) : self
     {
         $this->firstName = $firstName;
+        return $this;
     }
 
     /**
@@ -112,10 +116,12 @@ class Customer extends AbstractModel
 
     /**
      * @param string $middleName
+     * @return Customer
      */
-    public function setMiddleName(string $middleName)
+    public function setMiddleName(string $middleName) : self
     {
         $this->middleName = $middleName;
+        return $this;
     }
 
     /**
@@ -128,10 +134,12 @@ class Customer extends AbstractModel
 
     /**
      * @param string $lastName
+     * @return Customer
      */
-    public function setLastName(string $lastName)
+    public function setLastName(string $lastName) : self
     {
         $this->lastName = $lastName;
+        return $this;
     }
 
     /**
@@ -156,10 +164,12 @@ class Customer extends AbstractModel
 
     /**
      * @param string $fullName
+     * @return Customer
      */
-    public function setFullName(string $fullName)
+    public function setFullName(string $fullName) : self
     {
         $this->fullName = $fullName;
+        return $this;
     }
 
     /**
@@ -172,10 +182,12 @@ class Customer extends AbstractModel
 
     /**
      * @param string $email
+     * @return Customer
      */
-    public function setEmail(string $email)
+    public function setEmail(string $email) : self
     {
         $this->email = $email;
+        return $this;
     }
 
     /**
@@ -188,10 +200,12 @@ class Customer extends AbstractModel
 
     /**
      * @param Phone $phone
+     * @return Customer
      */
-    public function addPhoneNumber(Phone $phone)
+    public function addPhoneNumber(Phone $phone) : self
     {
         $this->phoneNumbers[] = $phone;
+        return $this;
     }
 
 
@@ -205,10 +219,12 @@ class Customer extends AbstractModel
 
     /**
      * @param \DateTime $dob
+     * @return Customer
      */
-    public function setDob(\DateTime $dob)
+    public function setDob(\DateTime $dob) : self
     {
         $this->dob = $dob;
+        return $this;
     }
 
     /**
@@ -221,10 +237,12 @@ class Customer extends AbstractModel
 
     /**
      * @param string $companyName
+     * @return Customer
      */
-    public function setCompanyName(string $companyName)
+    public function setCompanyName(string $companyName) : self
     {
         $this->companyName = $companyName;
+        return $this;
     }
 
     /**
@@ -237,10 +255,12 @@ class Customer extends AbstractModel
 
     /**
      * @param string $companyVatId
+     * @return Customer
      */
-    public function setCompanyVatId(string $companyVatId)
+    public function setCompanyVatId(string $companyVatId) : self
     {
         $this->companyVatId = $companyVatId;
+        return $this;
     }
 
     /**
@@ -253,10 +273,12 @@ class Customer extends AbstractModel
 
     /**
      * @param ExternalData $externalData
+     * @return Customer
      */
-    public function setExternalData(ExternalData $externalData)
+    public function setExternalData(ExternalData $externalData) : self
     {
         $this->externalData = $externalData;
+        return $this;
     }
 
     /**

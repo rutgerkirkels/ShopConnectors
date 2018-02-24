@@ -62,10 +62,12 @@ class Order extends AbstractModel
 
     /**
      * @param \DateTime $date
+     * @return Order
      */
-    public function setDate(\DateTime $date)
+    public function setDate(\DateTime $date) : self
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -78,10 +80,12 @@ class Order extends AbstractModel
 
     /**
      * @param \DateTime $lastUpdate
+     * @return Order
      */
-    public function setLastUpdate(\DateTime $lastUpdate)
+    public function setLastUpdate(\DateTime $lastUpdate) : self
     {
         $this->lastUpdate = $lastUpdate;
+        return $this;
     }
 
     /**
@@ -90,14 +94,17 @@ class Order extends AbstractModel
     public function getCustomer(): Customer
     {
         return $this->customer;
+
     }
 
     /**
      * @param Customer $customer
+     * @return Order
      */
-    public function setCustomer(Customer $customer)
+    public function setCustomer(Customer $customer) : self
     {
         $this->customer = $customer;
+        return $this;
     }
 
     /**
@@ -110,10 +117,12 @@ class Order extends AbstractModel
 
     /**
      * @param DeliveryAddress $deliveryAddress
+     * @return Order
      */
-    public function setDeliveryAddress(DeliveryAddress $deliveryAddress)
+    public function setDeliveryAddress(DeliveryAddress $deliveryAddress) : self
     {
         $this->deliveryAddress = $deliveryAddress;
+        return $this;
     }
 
     /**
@@ -126,10 +135,12 @@ class Order extends AbstractModel
 
     /**
      * @param InvoiceAddress $invoiceAddress
+     * @return Order
      */
-    public function setInvoiceAddress(InvoiceAddress $invoiceAddress)
+    public function setInvoiceAddress(InvoiceAddress $invoiceAddress) : self
     {
         $this->invoiceAddress = $invoiceAddress;
+        return $this;
     }
 
     /**
@@ -138,14 +149,17 @@ class Order extends AbstractModel
     public function getOrderLines(): array
     {
         return $this->orderLines;
+
     }
 
     /**
      * @param array $orderLines
+     * @return Order
      */
-    public function setOrderLines(array $orderLines)
+    public function setOrderLines(array $orderLines) : self
     {
         $this->orderLines = $orderLines;
+        return $this;
     }
 
     /**
@@ -158,10 +172,12 @@ class Order extends AbstractModel
 
     /**
      * @param ExternalData $externalData
+     * @return Order
      */
-    public function setExternalData(ExternalData $externalData)
+    public function setExternalData(ExternalData $externalData) : self
     {
         $this->externalData = $externalData;
+        return $this;
     }
 
     /**
@@ -174,10 +190,12 @@ class Order extends AbstractModel
 
     /**
      * @param Payment $payment
+     * @return Order
      */
-    public function setPayment(Payment $payment)
+    public function setPayment(Payment $payment) : self
     {
         $this->payment = $payment;
+        return $this;
     }
 
     public function getChecksum() {

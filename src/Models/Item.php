@@ -57,10 +57,12 @@ class Item
 
     /**
      * @param string $name
+     * @return Item
      */
-    public function setName(string $name)
+    public function setName(string $name) : self
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -77,22 +79,27 @@ class Item
     public function getPriceWithTax(): float
     {
         return $this->priceWithTax;
+
     }
 
     /**
      * @param float $priceWithTax
+     * @return Item
      */
-    public function setPriceWithTax(float $priceWithTax)
+    public function setPriceWithTax(float $priceWithTax) : self
     {
         $this->priceWithTax = $priceWithTax;
+        return $this;
     }
 
     /**
      * @param float $priceWithoutTax
+     * @return Item
      */
-    public function setPriceWithoutTax(float $priceWithoutTax)
+    public function setPriceWithoutTax(float $priceWithoutTax) : self
     {
         $this->priceWithoutTax = $priceWithoutTax;
+        return $this;
     }
 
     /**
@@ -105,10 +112,12 @@ class Item
 
     /**
      * @param string $sku
+     * @return Item
      */
-    public function setSku(string $sku)
+    public function setSku(string $sku) : self
     {
         $this->sku = $sku;
+        return $this;
     }
 
     /**
@@ -121,10 +130,12 @@ class Item
 
     /**
      * @param int $ean13
+     * @return Item
      */
-    public function setEan13(int $ean13)
+    public function setEan13(int $ean13) : self
     {
         $this->ean13 = $ean13;
+        return $this;
     }
 
     /**
@@ -137,10 +148,12 @@ class Item
 
     /**
      * @param int $upc
+     * @return Item
      */
-    public function setUpc(int $upc)
+    public function setUpc(int $upc) : self
     {
         $this->upc = $upc;
+        return $this;
     }
 
     /**
@@ -153,10 +166,12 @@ class Item
 
     /**
      * @param float $weight
+     * @return Item
      */
-    public function setWeight(float $weight)
+    public function setWeight(float $weight) : self
     {
         $this->weight = $weight;
+        return $this;
     }
 
 
