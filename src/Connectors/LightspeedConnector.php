@@ -32,7 +32,7 @@ class LightspeedConnector extends AbstractConnector implements ConnectorInterfac
     /**
      * LightspeedConnector constructor.
      * @param string $host
-     * @param CredentialsInterface|null $credentials
+     * @param LightspeedCredentials $credentials
      */
     public function __construct(string $host, LightspeedCredentials $credentials)
     {
@@ -46,6 +46,7 @@ class LightspeedConnector extends AbstractConnector implements ConnectorInterfac
     /**
      * @param DateRange $dateRange
      * @return array
+     * @throws \Exception
      */
     public function getOrdersByOrderDate(DateRange $dateRange)
     {

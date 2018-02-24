@@ -142,7 +142,7 @@ class WoocommerceConnector extends AbstractConnector implements ConnectorInterfa
         $externalData->setOrderId($wcOrder->id);
         $externalData->setOrderCode($wcOrder->order_number);
         $externalData->setOrderIp($wcOrder->customer_ip);
-
+        $externalData->setJson(json_encode($wcOrder));
         return $externalData;
     }
 

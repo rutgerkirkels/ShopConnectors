@@ -58,7 +58,7 @@ class Item
     /**
      * @param string $name
      */
-    public function setName(string $name): void
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -82,7 +82,7 @@ class Item
     /**
      * @param float $priceWithTax
      */
-    public function setPriceWithTax(float $priceWithTax): void
+    public function setPriceWithTax(float $priceWithTax)
     {
         $this->priceWithTax = $priceWithTax;
     }
@@ -90,7 +90,7 @@ class Item
     /**
      * @param float $priceWithoutTax
      */
-    public function setPriceWithoutTax(float $priceWithoutTax): void
+    public function setPriceWithoutTax(float $priceWithoutTax)
     {
         $this->priceWithoutTax = $priceWithoutTax;
     }
@@ -106,7 +106,7 @@ class Item
     /**
      * @param string $sku
      */
-    public function setSku(string $sku): void
+    public function setSku(string $sku)
     {
         $this->sku = $sku;
     }
@@ -122,7 +122,7 @@ class Item
     /**
      * @param int $ean13
      */
-    public function setEan13(int $ean13): void
+    public function setEan13(int $ean13)
     {
         $this->ean13 = $ean13;
     }
@@ -138,7 +138,7 @@ class Item
     /**
      * @param int $upc
      */
-    public function setUpc(int $upc): void
+    public function setUpc(int $upc)
     {
         $this->upc = $upc;
     }
@@ -154,7 +154,7 @@ class Item
     /**
      * @param float $weight
      */
-    public function setWeight(float $weight): void
+    public function setWeight(float $weight)
     {
         $this->weight = $weight;
     }

@@ -209,7 +209,7 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         $externalData = new Order\ExternalData();
         $externalData->setOrderId($psOrder->id);
         $externalData->setOrderCode($psOrder->reference);
-
+        $externalData->setJson(json_encode($psOrder));
         return $externalData;
     }
 

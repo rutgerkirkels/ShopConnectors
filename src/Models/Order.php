@@ -63,7 +63,7 @@ class Order extends AbstractModel
     /**
      * @param \DateTime $date
      */
-    public function setDate(\DateTime $date): void
+    public function setDate(\DateTime $date)
     {
         $this->date = $date;
     }
@@ -79,7 +79,7 @@ class Order extends AbstractModel
     /**
      * @param \DateTime $lastUpdate
      */
-    public function setLastUpdate(\DateTime $lastUpdate): void
+    public function setLastUpdate(\DateTime $lastUpdate)
     {
         $this->lastUpdate = $lastUpdate;
     }
@@ -95,7 +95,7 @@ class Order extends AbstractModel
     /**
      * @param Customer $customer
      */
-    public function setCustomer(Customer $customer): void
+    public function setCustomer(Customer $customer)
     {
         $this->customer = $customer;
     }
@@ -111,7 +111,7 @@ class Order extends AbstractModel
     /**
      * @param DeliveryAddress $deliveryAddress
      */
-    public function setDeliveryAddress(DeliveryAddress $deliveryAddress): void
+    public function setDeliveryAddress(DeliveryAddress $deliveryAddress)
     {
         $this->deliveryAddress = $deliveryAddress;
     }
@@ -127,7 +127,7 @@ class Order extends AbstractModel
     /**
      * @param InvoiceAddress $invoiceAddress
      */
-    public function setInvoiceAddress(InvoiceAddress $invoiceAddress): void
+    public function setInvoiceAddress(InvoiceAddress $invoiceAddress)
     {
         $this->invoiceAddress = $invoiceAddress;
     }
@@ -143,7 +143,7 @@ class Order extends AbstractModel
     /**
      * @param array $orderLines
      */
-    public function setOrderLines(array $orderLines): void
+    public function setOrderLines(array $orderLines)
     {
         $this->orderLines = $orderLines;
     }
@@ -159,7 +159,7 @@ class Order extends AbstractModel
     /**
      * @param ExternalData $externalData
      */
-    public function setExternalData(ExternalData $externalData): void
+    public function setExternalData(ExternalData $externalData)
     {
         $this->externalData = $externalData;
     }
@@ -175,7 +175,7 @@ class Order extends AbstractModel
     /**
      * @param Payment $payment
      */
-    public function setPayment(Payment $payment): void
+    public function setPayment(Payment $payment)
     {
         $this->payment = $payment;
     }

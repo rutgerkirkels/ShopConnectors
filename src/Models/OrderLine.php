@@ -2,6 +2,8 @@
 
 namespace rutgerkirkels\ShopConnectors\Models;
 
+use rutgerkirkels\ShopConnectors\Models\OrderLine\ExternalData;
+
 /**
  * Class OrderLine
  * @package rutgerkirkels\ShopConnectors\Models
@@ -21,6 +23,11 @@ class OrderLine
     protected $item;
 
     /**
+     * @var ExternalData
+     */
+    protected $externalData;
+
+    /**
      * OrderLine constructor.
      * @param Item|null $item
      * @param float|null $quantity
@@ -32,4 +39,22 @@ class OrderLine
             $this->quantity = $quantity;
         }
     }
+
+    /**
+     * @return ExternalData
+     */
+    public function getExternalData(): ExternalData
+    {
+        return $this->externalData;
+    }
+
+    /**
+     * @param ExternalData $externalData
+     */
+    public function setExternalData(ExternalData $externalData)
+    {
+        $this->externalData = $externalData;
+    }
+
+
 }
