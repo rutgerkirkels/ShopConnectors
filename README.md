@@ -12,3 +12,4 @@ Currently this library supports:
 - Shopify
 - WooCommerce
 - Amazon MWS
+- Bol.com
