@@ -11,3 +11,4 @@ Currently this library supports:
 - Prestashop
 - Shopify
 - WooCommerce
+- Amazon MWS

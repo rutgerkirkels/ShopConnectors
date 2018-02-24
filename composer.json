@@ -3,7 +3,7 @@
   "type": "library",
   "description": "Library to connect to various webshops",
   "license": "MIT",
-  "keywords": ["webshop","api", "prestashop"],
+  "keywords": ["webshop","api", "prestashop","Lightspeed","Magento","PlentyMarkets","Shopify","WooCommerce"],
   "authors": [
     {
       "name": "Rutger Kirkels",
