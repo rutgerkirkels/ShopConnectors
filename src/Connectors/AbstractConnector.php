@@ -36,7 +36,7 @@ class AbstractConnector
     /**
      * @var string
      */
-    protected $platform;
+    protected $userAgent;
 
     public function __construct(string $host = null, CredentialsInterface $credentials = null)
     {
@@ -125,5 +125,14 @@ class AbstractConnector
     {
         return $this->lastError;
     }
+
+    /**
+     * @param string $userAgent
+     */
+    public function setUserAgent(string $userAgent): void
+    {
+        $this->userAgent = $userAgent;
+    }
+
 
 }
