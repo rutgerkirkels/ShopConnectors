@@ -55,6 +55,7 @@ class AbstractAddress extends AbstractModel
     public function setAddress(string $address) : self
     {
         $this->address = $address;
+        return $this;
     }
 
     /**
