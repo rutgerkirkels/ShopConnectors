@@ -43,7 +43,10 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         parent::__construct($host, $credentials);
         $this->webservice = new Client([
             'base_uri' => $this->host . '/api/',
-            'auth' => [$this->credentials->getKey(),'']
+            'auth' => [$this->credentials->getKey(),''],
+            'headers' => [
+                'User-Agent' => $this->userAgent
+            ]
         ]);
     }
 

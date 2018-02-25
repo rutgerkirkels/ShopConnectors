@@ -52,7 +52,10 @@ class PlentymarketsConnector extends AbstractConnector implements ConnectorInter
         $this->getCountryIds();
 
         $this->webservice = new Client([
-            'base_uri' => $host . '/rest/'
+            'base_uri' => $host . '/rest/',
+            'headers' => [
+                'User-Agent' => $this->userAgent
+            ]
         ]);
     }
 

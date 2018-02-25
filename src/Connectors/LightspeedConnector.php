@@ -39,7 +39,10 @@ class LightspeedConnector extends AbstractConnector implements ConnectorInterfac
         parent::__construct($host, $credentials);
         $this->webservice = new Client([
             'base_uri' => $this->host,
-            'auth' => [$this->credentials->getKey(),$this->credentials->getPassword()]
+            'auth' => [$this->credentials->getKey(),$this->credentials->getPassword()],
+            'headers' => [
+                'User-Agent' => $this->userAgent
+            ]
         ]);
     }
 

@@ -37,7 +37,10 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
         parent::__construct($host, $credentials);
         $this->webservice = new Client([
             'base_uri' => $this->host . '/admin/',
-            'auth' => [$this->credentials->getKey(),$this->credentials->getPassword()]
+            'auth' => [$this->credentials->getKey(),$this->credentials->getPassword()],
+            'headers' => [
+                'User-Agent' => $this->userAgent
+            ]
         ]);
     }
 

@@ -36,9 +36,14 @@ class AbstractConnector
     /**
      * @var string
      */
-    protected $userAgent;
+    protected $userAgent = 'PHP ShopConnectors by Rutger Kirkels';
 
-    public function __construct(string $host = null, CredentialsInterface $credentials = null)
+    /**
+     * AbstractConnector constructor.
+     * @param string $host
+     * @param CredentialsInterface $credentials
+     */
+    public function __construct(string $host = '', CredentialsInterface $credentials)
     {
         $this->platform = $this->getPlatform();
         $this->host = $host;

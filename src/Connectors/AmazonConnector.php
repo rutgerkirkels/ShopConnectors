@@ -121,7 +121,7 @@ class AmazonConnector extends AbstractConnector implements ConnectorInterface
         $this->webservice = new \MarketplaceWebServiceOrders_Client(
             $this->credentials->getKeyId(),
             $this->credentials->getSecretKey(),
-            'ShopConnector',
+            $this->userAgent,
             'v1',
             $this->getConfig()
         );

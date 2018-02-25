@@ -45,6 +45,7 @@ class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
     /**
      * @param DateRange|null $dateRange
      * @return array
+     * @throws \Exception
      */
     public function getOrdersByOrderDate(DateRange $dateRange = null)
     {

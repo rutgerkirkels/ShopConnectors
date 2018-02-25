@@ -34,7 +34,10 @@ class BolConnector extends AbstractConnector implements ConnectorInterface
     {
         parent::__construct($host, $credentials);
         $this->webservice = new Client([
-            'base_uri' => $host
+            'base_uri' => $host,
+            'headers' => [
+                'User-Agent' => $this->userAgent
+            ]
         ]);
     }
 
