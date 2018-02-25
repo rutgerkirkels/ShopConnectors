@@ -38,6 +38,30 @@ class MultiPlatformConnector
             $orders = array_merge($orders, $platformOrders);
         }
 
-       return $orders;
+       return $this->sortOrders($orders, 'lastupdate');
+    }
+
+    /**
+     * @param array $orders
+     * @param string|null $sortField
+     * @return array
+     */
+    protected function sortOrders(array $orders, string $sortField = null)
+    {
+        switch (strtolower($sortField)) {
+            case 'lastupdate':
+                usort($orders, function($a, $b) {
+                    return strcmp($a->getLastUpdate()->format('r'), $b->getLastUpdate()->format('r'));
+                });
+                break;
+
+            case 'date':
+            default:
+                usort($orders, function($a, $b) {
+                    return strcmp($a->getDate()->format('r'), $b->getDate()->format('r'));
+                });
+        }
+
+        return $orders;
     }
 }
