@@ -4,6 +4,7 @@ namespace rutgerkirkels\ShopConnectors\Connectors;
 
 use GuzzleHttp\Client;
 use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
+use rutgerkirkels\ShopConnectors\Helpers\DateTime;
 use rutgerkirkels\ShopConnectors\Models\Customer;
 use rutgerkirkels\ShopConnectors\Models\DateRange;
 use rutgerkirkels\ShopConnectors\Models\DeliveryAddress;
@@ -40,6 +41,7 @@ class BolConnector extends AbstractConnector implements ConnectorInterface
     /**
      * @param DateRange $dateRange
      * @return array
+     * @throws \Exception
      */
     public function getOrdersByOrderDate(DateRange $dateRange)
     {
@@ -56,14 +58,18 @@ class BolConnector extends AbstractConnector implements ConnectorInterface
 
         $orders = [];
         foreach ($response->Order as $bolOrder) {
-            $order = new Order();
-            $order->setDate($this->getTimestamp($bolOrder->DateTimeCustomer));
-            $order->setCustomer($this->getCustomer($bolOrder));
-            $order->setInvoiceAddress($this->getAddress($bolOrder->CustomerDetails->BillingDetails, InvoiceAddress::class));
-            $order->setDeliveryAddress($this->getAddress($bolOrder->CustomerDetails->ShipmentDetails, DeliveryAddress::class));
-            $order->setOrderLines($this->getOrderlines($bolOrder->OrderItems->OrderItem));
-            $order->setExternalData($this->getExternalData($bolOrder));
-            $orders[] = $order;
+            $orderTimestamp = $this->getTimestamp($bolOrder->DateTimeCustomer);
+            if ($orderTimestamp >= $dateRange->getStart() && $orderTimestamp <= $dateRange->getEnd()) {
+                $order = new Order();
+                $order->setDate($this->getTimestamp($bolOrder->DateTimeCustomer));
+                $order->setCustomer($this->getCustomer($bolOrder));
+                $order->setInvoiceAddress($this->getAddress($bolOrder->CustomerDetails->BillingDetails, InvoiceAddress::class));
+                $order->setDeliveryAddress($this->getAddress($bolOrder->CustomerDetails->ShipmentDetails, DeliveryAddress::class));
+                $order->setOrderLines($this->getOrderlines($bolOrder->OrderItems->OrderItem));
+                $order->setExternalData($this->getExternalData($bolOrder));
+                $orders[] = $order;
+            }
+
         }
 
         return $orders;
@@ -72,10 +78,20 @@ class BolConnector extends AbstractConnector implements ConnectorInterface
     /**
      * @param \SimpleXMLElement $bolOrder
      * @return Customer
+     * @throws \Exception
      */
     protected function getCustomer(\SimpleXMLElement $bolOrder)
     {
         $customer = new Customer();
+        switch ($bolOrder->CustomerDetails->BillingDetails->SalutationCode) {
+            case '01':
+                $customer->setGender('male');
+                break;
+
+            case '02':
+                $customer->setGender('female');
+                break;
+        }
         $customer->setFirstName($bolOrder->CustomerDetails->BillingDetails->Firstname);
         $customer->setLastName($bolOrder->CustomerDetails->BillingDetails->Surname);
         $customer->setEmail($bolOrder->CustomerDetails->BillingDetails->Email);
