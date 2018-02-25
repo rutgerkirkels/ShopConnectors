@@ -53,6 +53,11 @@ class Order extends AbstractModel
     protected $payment;
 
     /**
+     * @var string
+     */
+    protected $platform;
+
+    /**
      * @return \DateTime
      */
     public function getDate(): \DateTime
@@ -197,6 +202,26 @@ class Order extends AbstractModel
         $this->payment = $payment;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getPlatform(): string
+    {
+        return $this->platform;
+    }
+
+    /**
+     * @param string $platform
+     * @return Order
+     */
+    public function setPlatform(string $platform): self
+    {
+        $this->platform = $platform;
+        return $this;
+    }
+
+
 
     public function getChecksum() {
         // TODO: generate checksum

@@ -63,6 +63,7 @@ class WoocommerceConnector extends AbstractConnector implements ConnectorInterfa
         $orders = [];
         foreach ($wcOrders as $wcOrder) {
             $order = new Order();
+            $order->setPlatform($this->getPlatform());
             $order->setDate($this->getTimestamp($wcOrder->created_at));
             $order->setLastUpdate($this->getTimestamp($wcOrder->updated_at));
             $order->setCustomer($this->getCustomer($wcOrder));

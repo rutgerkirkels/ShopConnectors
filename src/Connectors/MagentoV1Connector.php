@@ -77,6 +77,7 @@ class MagentoV1Connector extends AbstractConnector implements ConnectorInterface
             $magentoOrder = $this->webservice->salesOrderInfo($this->getSessionId(), $magentoOrderData->increment_id);
 
             $order = new Order();
+            $order->setPlatform($this->getPlatform());
             $order->setDate($this->getTimestamp($magentoOrder->created_at));
             $order->setLastUpdate($this->getTimestamp($magentoOrder->updated_at));
             $order->setCustomer($this->getMagentoCustomer($magentoOrder));

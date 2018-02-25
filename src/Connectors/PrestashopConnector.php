@@ -74,6 +74,7 @@ class PrestashopConnector extends AbstractConnector implements ConnectorInterfac
         $orders = [];
         foreach ($psOrders as $psOrder) {
             $order = new Order();
+            $order->setPlatform($this->getPlatform());
             $order->setDate($this->getTimestamp($psOrder->date_add));
             $order->setLastUpdate($this->getTimestamp($psOrder->date_upd));
             $order->setCustomer($this->getCustomer($psOrder->id_customer));

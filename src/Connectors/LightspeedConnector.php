@@ -95,6 +95,7 @@ class LightspeedConnector extends AbstractConnector implements ConnectorInterfac
 
         foreach ($lsOrders as $lsOrder) {
             $order = new Order();
+            $order->setPlatform($this->getPlatform());
             $order->setDate($this->getTimestamp($lsOrder->createdAt));
             $order->setLastUpdate($this->getTimestamp($lsOrder->updatedAt));
             $order->setCustomer($this->getCustomer($lsOrder));

@@ -68,6 +68,7 @@ class ShopifyConnector extends AbstractConnector implements ConnectorInterface
         $orders = [];
         foreach ($sfOrders as $sfOrder) {
             $order = new Order();
+            $order->setPlatform($this->getPlatform());
             $order->setDate($this->getTimestamp($sfOrder->created_at));
             $order->setLastUpdate($this->getTimestamp($sfOrder->updated_at));
             $order->setCustomer($this->getCustomer($sfOrder));

@@ -33,8 +33,14 @@ class AbstractConnector
      */
     protected $lastError;
 
+    /**
+     * @var string
+     */
+    protected $platform;
+
     public function __construct(string $host = null, CredentialsInterface $credentials = null)
     {
+        $this->platform = $this->getPlatform();
         $this->host = $host;
         $this->credentials = $credentials;
     }
@@ -105,6 +111,13 @@ class AbstractConnector
         }
     }
 
+    protected function getPlatform()
+    {
+        $path = explode('\\', get_class($this));
+        preg_match_all('/([a-zA-Z0-9]*)Connector/', array_pop($path), $matches, PREG_SET_ORDER, 0);
+
+        return $matches[0][1];
+    }
     /**
      * @return string
      */

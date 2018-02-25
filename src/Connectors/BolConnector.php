@@ -61,6 +61,7 @@ class BolConnector extends AbstractConnector implements ConnectorInterface
             $orderTimestamp = $this->getTimestamp($bolOrder->DateTimeCustomer);
             if ($orderTimestamp >= $dateRange->getStart() && $orderTimestamp <= $dateRange->getEnd()) {
                 $order = new Order();
+                $order->setPlatform($this->getPlatform());
                 $order->setDate($this->getTimestamp($bolOrder->DateTimeCustomer));
                 $order->setCustomer($this->getCustomer($bolOrder));
                 $order->setInvoiceAddress($this->getAddress($bolOrder->CustomerDetails->BillingDetails, InvoiceAddress::class));

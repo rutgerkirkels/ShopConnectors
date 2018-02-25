@@ -173,6 +173,7 @@ class AmazonConnector extends AbstractConnector implements ConnectorInterface
         $orders = [];
         foreach ($azOrders->ListOrdersResult->Orders->Order as $azOrder) {
             $order = new Order();
+            $order->setPlatform($this->getPlatform());
             $order->setDate($this->getTimestamp((string) $azOrder->PurchaseDate));
             $order->setLastUpdate($this->getTimestamp((string) $azOrder->LastUpdateDate));
             $order->setCustomer($this->getCustomer($azOrder));

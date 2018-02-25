@@ -96,6 +96,7 @@ class PlentymarketsConnector extends AbstractConnector implements ConnectorInter
             $addresses = $this->processAdresses($pmOrder->addresses);
 
             $order = new Order();
+            $order->setPlatform($this->getPlatform());
             $order->setDate($this->getTimestamp($pmOrder->createdAt));
             $order->setLastUpdate($this->getTimestamp($pmOrder->updatedAt));
             $order->setCustomer($this->getCustomer($pmOrder));
