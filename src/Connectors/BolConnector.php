@@ -3,6 +3,7 @@
 namespace rutgerkirkels\ShopConnectors\Connectors;
 
 use GuzzleHttp\Client;
+use rutgerkirkels\ShopConnectors\Entities\Credentials\BolCredentials;
 use rutgerkirkels\ShopConnectors\Entities\Credentials\CredentialsInterface;
 use rutgerkirkels\ShopConnectors\Helpers\DateTime;
 use rutgerkirkels\ShopConnectors\Models\Customer;
@@ -28,9 +29,9 @@ class BolConnector extends AbstractConnector implements ConnectorInterface
     /**
      * BolConnector constructor.
      * @param string $host
-     * @param CredentialsInterface $credentials
+     * @param BolCredentials $credentials
      */
-    public function __construct(string $host, CredentialsInterface $credentials)
+    public function __construct(string $host, BolCredentials $credentials)
     {
         parent::__construct($host, $credentials);
         $this->webservice = new Client([
