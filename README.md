@@ -13,3 +13,5 @@ Currently this library supports:
 - WooCommerce
 - Amazon MWS
 - Bol.com
+- Visualsoft
+- Demandware
